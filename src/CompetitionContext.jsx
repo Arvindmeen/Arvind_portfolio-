@@ -256,7 +256,7 @@ export function CompetitionProvider({ children }) {
 
   useEffect(() => {
     fetchRealTimeData();
-    const timer = setInterval(fetchRealTimeData, 300000); // 5 min polling
+    const timer = setInterval(fetchRealTimeData, 60 * 60 * 1000); // 1 hour polling (3600000 ms)
     return () => clearInterval(timer);
   }, [fetchRealTimeData]);
 
