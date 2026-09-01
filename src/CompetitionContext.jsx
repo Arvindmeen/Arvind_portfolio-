@@ -6,9 +6,9 @@ export const INITIAL_LEETCODE = {
   rating: 1869,
   topPercentage: 5.66,
   globalRanking: 48521,
-  totalSolved: 407,
+  totalSolved: 410,
   easySolved: 121,
-  mediumSolved: 227,
+  mediumSolved: 230,
   hardSolved: 59,
   contestsAttended: 16,
   badge: 'Knight',
@@ -68,8 +68,24 @@ export const INITIAL_CODEFORCES = {
 const CompetitionContext = createContext(null);
 
 export function CompetitionProvider({ children }) {
-  const [leetcodeData, setLeetcodeData] = useState(INITIAL_LEETCODE);
-  const [codeforcesData, setCodeforcesData] = useState(INITIAL_CODEFORCES);
+  const [leetcodeData, setLeetcodeData] = useState(() => {
+    try {
+      const cached = localStorage.getItem('portfolio_leetcode_data');
+      return cached ? { ...INITIAL_LEETCODE, ...JSON.parse(cached) } : INITIAL_LEETCODE;
+    } catch {
+      return INITIAL_LEETCODE;
+    }
+  });
+
+  const [codeforcesData, setCodeforcesData] = useState(() => {
+    try {
+      const cached = localStorage.getItem('portfolio_codeforces_data');
+      return cached ? { ...INITIAL_CODEFORCES, ...JSON.parse(cached) } : INITIAL_CODEFORCES;
+    } catch {
+      return INITIAL_CODEFORCES;
+    }
+  });
+
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [lastUpdatedTime, setLastUpdatedTime] = useState(null);
 
@@ -79,103 +95,158 @@ export function CompetitionProvider({ children }) {
     // 1. Fetch Codeforces Info
     try {
       const res = await fetch(`https://codeforces.com/api/user.info?handles=${codeforcesData.handle}`);
-      const info = await res.json();
-      if (info.status === 'OK' && info.result?.[0]) {
-        const user = info.result[0];
-        setCodeforcesData(prev => ({
-          ...prev,
-          rating: user.rating ?? prev.rating,
-          maxRating: user.maxRating ?? prev.maxRating,
-          rank: user.rank ?? prev.rank,
-          maxRank: user.maxRank ?? prev.maxRank,
-          organization: user.organization ?? prev.organization,
-          city: user.city ?? prev.city
-        }));
+      if (res.ok) {
+        const info = await res.json();
+        if (info.status === 'OK' && info.result?.[0]) {
+          const user = info.result[0];
+          setCodeforcesData(prev => {
+            const updated = {
+              ...prev,
+              rating: user.rating ?? prev.rating,
+              maxRating: user.maxRating ?? prev.maxRating,
+              rank: user.rank ?? prev.rank,
+              maxRank: user.maxRank ?? prev.maxRank,
+              organization: user.organization ?? prev.organization,
+              city: user.city ?? prev.city
+            };
+            try { localStorage.setItem('portfolio_codeforces_data', JSON.stringify(updated)); } catch {}
+            return updated;
+          });
+        }
       }
     } catch {}
 
     // 2. Fetch Codeforces Rating History
     try {
       const res = await fetch(`https://codeforces.com/api/user.rating?handle=${codeforcesData.handle}`);
-      const ratings = await res.json();
-      if (ratings.status === 'OK' && Array.isArray(ratings.result) && ratings.result.length > 0) {
-        const formatted = ratings.result.map(c => {
-          const dateObj = new Date(c.ratingUpdateTimeSeconds * 1000);
-          return {
-            title: c.contestName,
-            rating: c.newRating,
-            rank: c.rank,
-            date: dateObj.toLocaleString('en-US', { month: 'short', year: 'numeric' })
-          };
-        });
-        setCodeforcesData(prev => ({
-          ...prev,
-          contestsAttended: ratings.result.length,
-          history: formatted
-        }));
+      if (res.ok) {
+        const ratings = await res.json();
+        if (ratings.status === 'OK' && Array.isArray(ratings.result) && ratings.result.length > 0) {
+          const formatted = ratings.result.map(c => {
+            const dateObj = new Date(c.ratingUpdateTimeSeconds * 1000);
+            return {
+              title: c.contestName,
+              rating: c.newRating,
+              rank: c.rank,
+              date: dateObj.toLocaleString('en-US', { month: 'short', year: 'numeric' })
+            };
+          });
+          setCodeforcesData(prev => {
+            const updated = {
+              ...prev,
+              contestsAttended: ratings.result.length,
+              history: formatted
+            };
+            try { localStorage.setItem('portfolio_codeforces_data', JSON.stringify(updated)); } catch {}
+            return updated;
+          });
+        }
       }
     } catch {}
 
-    // 3. Fetch LeetCode User Profile (Solves)
+    // 3. Fetch LeetCode User Solves (Primary: Vercel serverless API, Fallback: Render API)
+    let solvedUpdated = false;
     try {
-      const res = await fetch(`https://alfa-leetcode-api.onrender.com/userProfile/${leetcodeData.handle}`);
-      const data = await res.json();
-      if (data.totalSolved !== undefined) {
-        setLeetcodeData(prev => ({
-          ...prev,
-          totalSolved: data.totalSolved ?? prev.totalSolved,
-          easySolved: data.easySolved ?? prev.easySolved,
-          mediumSolved: data.mediumSolved ?? prev.mediumSolved,
-          hardSolved: data.hardSolved ?? prev.hardSolved,
-        }));
+      const res = await fetch(`https://leetcode-api-faisalshohag.vercel.app/${leetcodeData.handle}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (typeof data.totalSolved === 'number' && data.totalSolved > 0) {
+          solvedUpdated = true;
+          setLeetcodeData(prev => {
+            const updated = {
+              ...prev,
+              totalSolved: data.totalSolved,
+              easySolved: data.easySolved ?? prev.easySolved,
+              mediumSolved: data.mediumSolved ?? prev.mediumSolved,
+              hardSolved: data.hardSolved ?? prev.hardSolved,
+              globalRanking: data.ranking ? Number(data.ranking) : prev.globalRanking
+            };
+            try { localStorage.setItem('portfolio_leetcode_data', JSON.stringify(updated)); } catch {}
+            return updated;
+          });
+        }
       }
     } catch {}
+
+    if (!solvedUpdated) {
+      try {
+        const res = await fetch(`https://alfa-leetcode-api.onrender.com/userProfile/${leetcodeData.handle}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.totalSolved !== undefined) {
+            setLeetcodeData(prev => {
+              const updated = {
+                ...prev,
+                totalSolved: data.totalSolved ?? prev.totalSolved,
+                easySolved: data.easySolved ?? prev.easySolved,
+                mediumSolved: data.mediumSolved ?? prev.mediumSolved,
+                hardSolved: data.hardSolved ?? prev.hardSolved,
+              };
+              try { localStorage.setItem('portfolio_leetcode_data', JSON.stringify(updated)); } catch {}
+              return updated;
+            });
+          }
+        }
+      } catch {}
+    }
 
     // 4. Fetch LeetCode Contest Stats & History
     try {
       const res = await fetch(`https://alfa-leetcode-api.onrender.com/${leetcodeData.handle}/contest`);
-      const contest = await res.json();
-      if (contest.contestRating) {
-        const attended = (contest.contestParticipation || [])
-          .filter(c => c.attended)
-          .map(c => {
-            const dateObj = new Date(c.contest.startTime * 1000);
-            return {
-              title: c.contest.title,
-              rating: Math.round(c.rating),
-              rank: c.ranking,
-              solved: c.problemsSolved,
-              date: dateObj.toLocaleString('en-US', { month: 'short', year: 'numeric' })
-            };
-          });
+      if (res.ok) {
+        const contest = await res.json();
+        if (contest.contestRating) {
+          const attended = (contest.contestParticipation || [])
+            .filter(c => c.attended)
+            .map(c => {
+              const dateObj = new Date(c.contest.startTime * 1000);
+              return {
+                title: c.contest.title,
+                rating: Math.round(c.rating),
+                rank: c.ranking,
+                solved: c.problemsSolved,
+                date: dateObj.toLocaleString('en-US', { month: 'short', year: 'numeric' })
+              };
+            });
 
-        setLeetcodeData(prev => ({
-          ...prev,
-          rating: Math.round(contest.contestRating) || prev.rating,
-          topPercentage: contest.contestTopPercentage ?? prev.topPercentage,
-          globalRanking: contest.contestGlobalRanking ?? prev.globalRanking,
-          badge: contest.contestBadges?.name || prev.badge,
-          contestsAttended: contest.contestAttend ?? prev.contestsAttended,
-          history: attended.length > 0 ? attended : prev.history
-        }));
+          setLeetcodeData(prev => {
+            const updated = {
+              ...prev,
+              rating: Math.round(contest.contestRating) || prev.rating,
+              topPercentage: contest.contestTopPercentage ?? prev.topPercentage,
+              globalRanking: contest.contestGlobalRanking ?? prev.globalRanking,
+              badge: contest.contestBadges?.name || prev.badge,
+              contestsAttended: contest.contestAttend ?? prev.contestsAttended,
+              history: attended.length > 0 ? attended : prev.history
+            };
+            try { localStorage.setItem('portfolio_leetcode_data', JSON.stringify(updated)); } catch {}
+            return updated;
+          });
+        }
       }
     } catch {}
 
     // 5. Fetch LeetCode Badges
     try {
       const res = await fetch(`https://alfa-leetcode-api.onrender.com/${leetcodeData.handle}/badges`);
-      const badges = await res.json();
-      if (badges.badges && Array.isArray(badges.badges)) {
-        const list = badges.badges.slice(0, 6).map(b => ({
-          name: b.displayName,
-          date: b.creationDate ? new Date(b.creationDate).toLocaleString('en-US', { month: 'short', year: 'numeric' }) : '',
-          icon: b.displayName.includes('Knight') ? '🛡️' : b.displayName.includes('100') ? '💯' : b.displayName.includes('50') ? '🎯' : '⭐'
-        }));
-        setLeetcodeData(prev => ({
-          ...prev,
-          badgesCount: badges.badgesCount || prev.badgesCount,
-          badgesList: list.length > 0 ? list : prev.badgesList
-        }));
+      if (res.ok) {
+        const badges = await res.json();
+        if (badges.badges && Array.isArray(badges.badges)) {
+          const list = badges.badges.slice(0, 6).map(b => ({
+            name: b.displayName,
+            date: b.creationDate ? new Date(b.creationDate).toLocaleString('en-US', { month: 'short', year: 'numeric' }) : '',
+            icon: b.displayName.includes('Knight') ? '🛡️' : b.displayName.includes('100') ? '💯' : b.displayName.includes('50') ? '🎯' : '⭐'
+          }));
+          setLeetcodeData(prev => {
+            const updated = {
+              ...prev,
+              badgesCount: badges.badgesCount || prev.badgesCount,
+              badgesList: list.length > 0 ? list : prev.badgesList
+            };
+            try { localStorage.setItem('portfolio_leetcode_data', JSON.stringify(updated)); } catch {}
+            return updated;
+          });
+        }
       }
     } catch {}
 

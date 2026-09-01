@@ -15,7 +15,7 @@ export const profile = {
   available: true,
   stats: [
     { value: 2, suffix: '+', label: 'Years Experience' },
-    { value: 400, suffix: '+', label: 'DSA Problems Solved' },
+    { value: 410, suffix: '+', label: 'DSA Problems Solved' },
     { value: 15, suffix: '+', label: 'Projects Built' },
   ],
   roles: [
@@ -28,7 +28,7 @@ export const profile = {
   bio: [
     `Hey! I'm Arvind Meena, a Bioscience and Biotechnology student at IIT Kharagpur who fell in love with backend engineering — now building high-throughput distributed systems, event-driven architectures, and production-grade REST APIs.`,
     `My work spans architecting a 7-microservice train booking platform with Kafka-driven event pipelines, Saga-pattern fault tolerance, and a 96% latency cut via Redis caching down to building a real-time geospatial surge-pricing engine with Apache Flink and H3 indexing that processes 10,000+ location events per second.`,
-    `I've shipped a scalable e-commerce REST API with JWT auth and RBAC as a Software Developer Intern at Atlys Workforce Technologies, containerized full microservice ecosystems with Docker, and solved 400+ problems across LeetCode (Knight Badge, Top 5%) and Codeforces.`,
+    `I've shipped a scalable e-commerce REST API with JWT auth and RBAC as a Software Developer Intern at Atlys Workforce Technologies, containerized full microservice ecosystems with Docker, and solved 410+ problems across LeetCode (Knight Badge, Top 5%) and Codeforces.`,
   ],
 };
 
@@ -40,7 +40,7 @@ export const skills = [
     emoji: '🧠',
     cat: 'core-cs',
     project: 'Competitive Programming & Algorithms',
-    summary: '400+ problems solved across LeetCode (Knight rank, 1869 peak) and Codeforces (Pupil 1329 peak).',
+    summary: '410+ problems solved across LeetCode (Knight rank, 1869 peak) and Codeforces (Pupil 1329 peak).',
     highlight: 'Knight on LeetCode (Top 5.6%)'
   },
   {
@@ -502,7 +502,7 @@ export const experience = [
     role: 'Competitive Programmer & Problem Solver',
     company: 'LeetCode & Codeforces',
     period: '2024 – Present',
-    desc: 'Solved 400+ algorithmic problems focusing on Dynamic Programming, Graph Theory, Trees, and Bit Manipulation. Knight on LeetCode (Top 5.6% Worldwide, 1869 peak rating) and Pupil on Codeforces (1329 peak rating) across 40+ rated global rounds.',
+    desc: 'Solved 410+ algorithmic problems focusing on Dynamic Programming, Graph Theory, Trees, and Bit Manipulation. Knight on LeetCode (Top 5.6% Worldwide, 1869 peak rating) and Pupil on Codeforces (1329 peak rating) across 40+ rated global rounds.',
     tags: ['C++', 'DSA', 'Algorithms', 'Graph Theory', 'Dynamic Programming', 'Competitive Programming'],
   },
   {

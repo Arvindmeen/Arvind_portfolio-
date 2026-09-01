@@ -136,7 +136,7 @@ export default function Hero() {
                 const dynamicValue = isDsa && leetcodeData?.totalSolved ? leetcodeData.totalSolved : s.value;
                 return (
                   <StatItem
-                    key={s.label}
+                    key={`${s.label}-${dynamicValue}`}
                     {...s}
                     value={dynamicValue}
                   />
