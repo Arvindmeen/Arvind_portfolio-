@@ -12,14 +12,19 @@ const NAV_LINKS = [
 ];
 
 const TECH_PILLS = [
-  'C++',
-  'Node.js',
-  'Express.js',
+  'Distributed Systems',
+  'Microservices',
   'Apache Kafka',
-  'Redis',
-  'Docker',
+  'Apache Flink',
+  'Redis & Caching',
   'PostgreSQL',
-  'React',
+  'Docker',
+  'Node.js',
+  'C++',
+  'System Design',
+  'DSA & Algorithms',
+  'WebSockets',
+  'React.js',
 ];
 
 const SOCIAL_ICONS = [
@@ -89,14 +94,14 @@ export default function Footer() {
 
               {/* Core Technologies Pills */}
               <div>
-                <div className="font-mono text-[10px] font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-2">
-                  Specializations
+                <div className="font-mono text-[10px] font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-2.5">
+                  Core Technical Competencies
                 </div>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-1.5 max-w-lg">
                   {TECH_PILLS.map(tech => (
                     <span
                       key={tech}
-                      className="px-2.5 py-0.5 rounded-md text-[11px] font-mono font-medium border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/60 text-zinc-600 dark:text-zinc-400"
+                      className="px-2.5 py-1 rounded-md text-[11px] font-mono font-medium border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/70 text-zinc-700 dark:text-zinc-300 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors"
                     >
                       {tech}
                     </span>
@@ -141,21 +146,27 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="group flex items-center justify-between px-3 py-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-zinc-900/50 text-xs hover:border-amber-500/50 hover:bg-amber-500/10 transition-all duration-200"
                 >
-                  <span className="font-medium text-zinc-700 dark:text-zinc-300 group-hover:text-amber-600 dark:group-hover:text-amber-400 flex items-center gap-1.5">
-                    <span>⚡</span> LeetCode
+                  <span className="font-medium text-zinc-700 dark:text-zinc-300 group-hover:text-amber-600 dark:group-hover:text-amber-400 flex items-center gap-2">
+                    <img src="/leetcode.svg" alt="LeetCode" className="w-4 h-4 object-contain" />
+                    LeetCode
                   </span>
-                  <span className="font-mono text-[10px] text-zinc-400 dark:text-zinc-500">Knight</span>
+                  <span className="font-mono text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-medium">
+                    Knight
+                  </span>
                 </a>
                 <a
-                  href="https://codeforces.com/profile/Arvind_meena"
+                  href="https://codeforces.com/profile/arvind_meena014"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center justify-between px-3 py-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-zinc-900/50 text-xs hover:border-blue-500/50 hover:bg-blue-500/10 transition-all duration-200"
                 >
-                  <span className="font-medium text-zinc-700 dark:text-zinc-300 group-hover:text-blue-500 flex items-center gap-1.5">
-                    <span>🔷</span> Codeforces
+                  <span className="font-medium text-zinc-700 dark:text-zinc-300 group-hover:text-blue-500 flex items-center gap-2">
+                    <img src="/codeforces.svg" alt="Codeforces" className="w-4 h-4 object-contain" />
+                    Codeforces
                   </span>
-                  <span className="font-mono text-[10px] text-zinc-400 dark:text-zinc-500">Pupil</span>
+                  <span className="font-mono text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-medium">
+                    Pupil
+                  </span>
                 </a>
               </div>
 
@@ -183,7 +194,7 @@ export default function Footer() {
         {/* Bottom Signature */}
         <div className="pt-6 flex flex-wrap items-center justify-between gap-4 text-xs text-zinc-400 dark:text-zinc-500">
           <p>
-            &copy; {new Date().getFullYear()} <strong className="text-zinc-700 dark:text-zinc-300 font-semibold">{profile.name}</strong> &middot; Built with React &amp; Tailwind CSS
+            &copy; {new Date().getFullYear()} <strong className="text-zinc-700 dark:text-zinc-300 font-semibold">{profile.name}</strong> &middot; All rights reserved &middot; Engineered for high performance &amp; scale
           </p>
 
           <button
