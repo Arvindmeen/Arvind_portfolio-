@@ -19,9 +19,9 @@ export const profile = {
     { value: 15, suffix: '+', label: 'Projects Built' },
   ],
   roles: [
-    'Backend & Distributed Systems Engineer',
-    'Full Stack Developer (React & Node.js)',
-    'Competitive Programmer (Knight on LeetCode)',
+    'Backend Systems Engineer',
+    'Full Stack Developer',
+    'Competitive Programmer',
     'IIT Kharagpur Student',
     'System Design Enthusiast',
   ],
