@@ -72,9 +72,14 @@ export default function Footer() {
           <div className="md:col-span-6 flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-3 mb-3">
-                <span className="w-10 h-10 rounded-xl bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 font-mono text-sm font-bold flex items-center justify-center shadow-sm">
-                  {profile.initials}
-                </span>
+                <div className="relative">
+                  <img
+                    src={profile.avatar}
+                    alt={profile.name}
+                    className="w-11 h-11 rounded-full object-cover ring-2 ring-zinc-200 dark:ring-zinc-800 shadow-sm"
+                  />
+                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-zinc-950" />
+                </div>
                 <div>
                   <h3 className="font-serif text-lg font-bold text-zinc-900 dark:text-zinc-100 leading-tight">
                     {profile.name}
