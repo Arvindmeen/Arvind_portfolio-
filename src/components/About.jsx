@@ -13,35 +13,40 @@ export default function About() {
   return (
     <section id="about" className="py-24 bg-zinc-100/50 dark:bg-zinc-900/40">
       <div className="max-w-5xl mx-auto px-6">
-        <div className="grid md:grid-cols-[1fr_1.6fr] gap-16 items-start">
+        <div className="grid md:grid-cols-[1fr_1.6fr] gap-10 md:gap-16 items-start">
 
-          <Reveal>
-            <div className="md:sticky md:top-24">
-              <div className="w-full max-w-[320px] mx-auto md:mx-0 aspect-[4/5] max-h-[350px] rounded-2xl bg-gradient-to-br from-zinc-200 to-zinc-300 dark:from-zinc-700 dark:to-zinc-800 border border-zinc-300 dark:border-zinc-700 shadow-md mb-5 overflow-hidden flex items-center justify-center">
-                {profile.avatar ? (
-                  <img
-                    src={profile.avatar}
-                    alt={profile.name}
-                    className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                ) : (
-                  <span className="font-serif text-8xl font-semibold text-zinc-400/40 dark:text-zinc-500/40 select-none">AM</span>
-                )}
+          {/* Left Column on Desktop / Below About Me on Mobile */}
+          <div className="order-2 md:order-1">
+            <Reveal>
+              <div className="md:sticky md:top-24">
+                {/* Photo: hidden on mobile, visible on laptop/desktop */}
+                <div className="hidden md:flex w-full max-w-[320px] mx-auto md:mx-0 aspect-[4/5] max-h-[350px] rounded-2xl bg-gradient-to-br from-zinc-200 to-zinc-300 dark:from-zinc-700 dark:to-zinc-800 border border-zinc-300 dark:border-zinc-700 shadow-md mb-5 overflow-hidden items-center justify-center">
+                  {profile.avatar ? (
+                    <img
+                      src={profile.avatar}
+                      alt={profile.name}
+                      className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <span className="font-serif text-8xl font-semibold text-zinc-400/40 dark:text-zinc-500/40 select-none">AM</span>
+                  )}
+                </div>
+                <div className="flex flex-col gap-2 w-full max-w-md mx-auto md:max-w-[320px] md:mx-0">
+                  {tags.map(t => (
+                    <div key={t.label} className="flex items-center gap-3 px-3 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm text-sm">
+                      <span className="text-zinc-400 dark:text-zinc-500">{t.icon}</span>
+                      <span className="text-zinc-400 dark:text-zinc-500 text-xs font-medium w-20 shrink-0">{t.label}</span>
+                      <span className="text-zinc-700 dark:text-zinc-300 font-medium">{t.value}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="flex flex-col gap-2 max-w-[320px] mx-auto md:mx-0">
-                {tags.map(t => (
-                  <div key={t.label} className="flex items-center gap-3 px-3 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm text-sm">
-                    <span className="text-zinc-400 dark:text-zinc-500">{t.icon}</span>
-                    <span className="text-zinc-400 dark:text-zinc-500 text-xs font-medium w-20 shrink-0">{t.label}</span>
-                    <span className="text-zinc-700 dark:text-zinc-300 font-medium">{t.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
 
-          <div>
+          {/* Right Column on Desktop / Above Data on Mobile */}
+          <div className="order-1 md:order-2">
             <Reveal>
               <p className="font-mono text-xs font-semibold tracking-[0.15em] uppercase text-zinc-400 dark:text-zinc-500 mb-3 flex items-center gap-2">
                 {/* <span className="inline-block w-6 h-px bg-zinc-300 dark:bg-zinc-600" /> */}
