@@ -23,7 +23,7 @@ export default function App() {
     <CompetitionProvider>
       <ScrollProgressBar />
       <Navbar dark={dark} toggleTheme={toggle} onMenuOpen={() => setMenuOpen(true)} />
-      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} dark={dark} toggleTheme={toggle} />
 
       <main>
         <Hero />

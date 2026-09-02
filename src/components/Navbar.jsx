@@ -41,9 +41,14 @@ export default function Navbar({ dark, toggleTheme, onMenuOpen }) {
                 className="hidden md:flex items-center px-4 py-1.5 rounded-full text-sm font-semibold bg-zinc-900 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-900 hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-all duration-200 shadow-sm">
                 Contact Me
               </a>
-              <button onClick={onMenuOpen} aria-label="Open menu"
-                className="md:hidden w-9 h-9 flex items-center justify-center text-zinc-700 dark:text-zinc-300">
-                <MenuIcon size={20} />
+              <button
+                onClick={onMenuOpen}
+                aria-label="Open menu"
+                className="md:hidden relative w-9 h-9 rounded-full border border-zinc-300 dark:border-zinc-700 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md flex flex-col items-center justify-center gap-[4.5px] text-zinc-700 dark:text-zinc-300 hover:border-zinc-500 dark:hover:border-zinc-500 active:scale-95 transition-all shadow-sm"
+              >
+                <span className="w-4 h-[1.75px] rounded-full bg-current transition-all" />
+                <span className="w-3 h-[1.75px] rounded-full bg-current transition-all ml-1" />
+                <span className="w-4 h-[1.75px] rounded-full bg-current transition-all" />
               </button>
             </div>
           </nav>
