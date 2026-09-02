@@ -48,10 +48,37 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setStatus('sending');
+
+    const form = e.target;
+    const name = form.name.value.trim();
+    const senderEmail = form.email.value.trim();
+    const subject = form.subject.value.trim();
+    const message = form.message.value.trim();
+
+    const formattedBody = `Hi Arvind,\n\n${message}\n\n---\nSender: ${name}\nReply to: ${senderEmail}`;
+
+    // Detect if user is on mobile (Android, iOS, etc.)
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+
+    if (isMobile) {
+      // On mobile: trigger mailto to open native mail app / Gmail app
+      const mailtoUrl = `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(formattedBody)}`;
+      window.location.href = mailtoUrl;
+    } else {
+      // On desktop (Windows/PC): open browser Gmail Compose in a new tab with pre-filled fields
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+        profile.email
+      )}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(formattedBody)}`;
+      window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+    }
+
+    setStatus('sent');
     setTimeout(() => {
-      setStatus('sent');
-      setTimeout(() => { setStatus('idle'); e.target.reset(); }, 3000);
-    }, 1000);
+      setStatus('idle');
+      form.reset();
+    }, 3000);
   };
 
   return (
@@ -104,23 +131,23 @@ export default function Contact() {
               <div className="grid grid-cols-2 gap-4 mb-4">
                 <div>
                   <label className="block font-mono text-[11px] font-semibold tracking-widest uppercase text-zinc-400 dark:text-zinc-500 mb-2" htmlFor="name">Name</label>
-                  <input id="name" type="text" required placeholder="Your name"
+                  <input id="name" name="name" type="text" required placeholder="Your name"
                     className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-950 text-zinc-800 dark:text-zinc-200 text-sm placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600 transition-all" />
                 </div>
                 <div>
                   <label className="block font-mono text-[11px] font-semibold tracking-widest uppercase text-zinc-400 dark:text-zinc-500 mb-2" htmlFor="email">Email</label>
-                  <input id="email" type="email" required placeholder="your@email.com"
+                  <input id="email" name="email" type="email" required placeholder="your@email.com"
                     className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-950 text-zinc-800 dark:text-zinc-200 text-sm placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600 transition-all" />
                 </div>
               </div>
               <div className="mb-4">
                 <label className="block font-mono text-[11px] font-semibold tracking-widest uppercase text-zinc-400 dark:text-zinc-500 mb-2" htmlFor="subject">Subject</label>
-                <input id="subject" type="text" required placeholder="What's this about?"
+                <input id="subject" name="subject" type="text" required placeholder="What's this about?"
                   className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-950 text-zinc-800 dark:text-zinc-200 text-sm placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600 transition-all" />
               </div>
               <div className="mb-6">
                 <label className="block font-mono text-[11px] font-semibold tracking-widest uppercase text-zinc-400 dark:text-zinc-500 mb-2" htmlFor="message">Message</label>
-                <textarea id="message" required rows={4} placeholder="Tell me about your project..."
+                <textarea id="message" name="message" required rows={4} placeholder="Tell me about your project..."
                   className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-950 text-zinc-800 dark:text-zinc-200 text-sm placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600 transition-all resize-none" />
               </div>
               <button type="submit" disabled={status !== 'idle'}
@@ -130,9 +157,12 @@ export default function Contact() {
                     : 'bg-zinc-900 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-900 hover:bg-zinc-700 dark:hover:bg-zinc-200 hover:-translate-y-0.5'
                 } disabled:opacity-70 disabled:cursor-not-allowed`}>
                 {status === 'idle'    && <><SendIcon size={14} /> Send Message</>}
-                {status === 'sending' && <span className="animate-pulse">Sending…</span>}
-                {status === 'sent'    && '✓ Message Sent!'}
+                {status === 'sending' && <span className="animate-pulse">Opening email…</span>}
+                {status === 'sent'    && '✓ Opening email client...'}
               </button>
+              <p className="text-[11px] font-mono text-center text-zinc-400 dark:text-zinc-500 mt-3">
+                Opens Gmail in browser (Desktop) or your native Mail app (Mobile)
+              </p>
             </form>
           </Reveal>
         </div>

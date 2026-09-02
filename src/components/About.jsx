@@ -44,7 +44,7 @@ export default function About() {
           <div>
             <Reveal>
               <p className="font-mono text-xs font-semibold tracking-[0.15em] uppercase text-zinc-400 dark:text-zinc-500 mb-3 flex items-center gap-2">
-                <span className="inline-block w-6 h-px bg-zinc-300 dark:bg-zinc-600" />
+                {/* <span className="inline-block w-6 h-px bg-zinc-300 dark:bg-zinc-600" /> */}
                 About Me
               </p>
               <h2 className="font-serif text-4xl md:text-5xl font-semibold text-zinc-900 dark:text-zinc-100 mb-8 leading-[1.15]">

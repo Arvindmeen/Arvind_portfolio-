@@ -17,16 +17,16 @@ export default function Skills() {
           <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
             <div>
               <p className="font-mono text-xs font-semibold tracking-[0.15em] uppercase text-zinc-400 dark:text-zinc-500 mb-3 flex items-center gap-2">
-                <span className="inline-block w-6 h-px bg-zinc-300 dark:bg-zinc-600" />
+                {/* <span className="inline-block w-6 h-px bg-zinc-300 dark:bg-zinc-600" /> */}
                 Technical Arsenal
               </p>
               <h2 className="font-serif text-4xl md:text-5xl font-semibold text-zinc-900 dark:text-zinc-100 leading-[1.15]">
-                Skills &amp; Technologies
+                Skills and Technologies
               </h2>
             </div>
             <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-zinc-400">
               <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Hover any skill to see where &amp; how I used it</span>
+              <span>Hover any skill to see where & how I used it</span>
             </div>
           </div>
         </Reveal>

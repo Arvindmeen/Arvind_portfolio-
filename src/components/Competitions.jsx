@@ -69,11 +69,11 @@ export default function Competitions() {
           <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
             <div>
               <p className="font-mono text-xs font-semibold tracking-[0.15em] uppercase text-zinc-400 dark:text-zinc-500 mb-3 flex items-center gap-2">
-                <span className="inline-block w-6 h-px bg-zinc-300 dark:bg-zinc-600" />
+                {/* <span className="inline-block w-6 h-px bg-zinc-300 dark:bg-zinc-600" /> */}
                 Competitive Programming
               </p>
               <h2 className="font-serif text-4xl md:text-5xl font-semibold text-zinc-900 dark:text-zinc-100 leading-[1.15]">
-                Competitions &amp; Ratings
+                Competitions and Ratings
               </h2>
             </div>
             
@@ -81,11 +81,14 @@ export default function Competitions() {
               <button
                 onClick={fetchRealTimeData}
                 disabled={isRefreshing}
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-mono font-medium hover:bg-emerald-500/20 transition-all cursor-pointer disabled:opacity-60"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/80 text-zinc-600 dark:text-zinc-300 text-xs font-mono font-medium hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800/60 shadow-sm transition-all cursor-pointer disabled:opacity-60"
                 title="Click to refresh live data"
               >
-                <span className={`w-2 h-2 rounded-full bg-emerald-500 ${isRefreshing ? 'animate-ping' : 'animate-pulse'}`} />
-                {isRefreshing ? 'Syncing...' : lastUpdatedTime ? `Live Synced (${lastUpdatedTime})` : 'Live API Active'}
+                <span className="relative flex h-2 w-2">
+                  <span className={`animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 ${isRefreshing ? 'duration-500' : ''}`} />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                </span>
+                <span>{isRefreshing ? 'Syncing...' : lastUpdatedTime ? `Live Synced (${lastUpdatedTime})` : 'Live API Active'}</span>
               </button>
             </div>
           </div>
@@ -96,18 +99,21 @@ export default function Competitions() {
           
           {/* LeetCode Card */}
           <Reveal delay={100}>
-            <div className="p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm hover:border-amber-500/40 hover:shadow-lg transition-all duration-300 h-full flex flex-col justify-between">
+            <div className="p-7 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/60 backdrop-blur-md hover:border-amber-500/30 hover:shadow-xl transition-all duration-300 h-full flex flex-col justify-between">
               <div>
                 <div className="flex items-start justify-between gap-4 mb-5">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-500 font-bold text-xl">
-                      ⚡
+                    <div className="w-11 h-11 rounded-xl bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200/80 dark:border-zinc-700/80 p-2 flex items-center justify-center shrink-0 shadow-sm">
+                      <img src="/leetcode.svg" alt="LeetCode" className="w-full h-full object-contain" />
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <h3 className="font-bold text-zinc-900 dark:text-zinc-100 text-lg">LeetCode</h3>
-                        <span className="px-2.5 py-0.5 rounded-md text-[11px] font-mono font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 flex items-center gap-1">
-                          {leetcodeData.badge} 🛡️
+                        <h3 className="font-bold text-zinc-900 dark:text-zinc-100 text-lg tracking-tight">LeetCode</h3>
+                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/25 flex items-center gap-1.5">
+                          <svg className="w-3 h-3 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                          </svg>
+                          {leetcodeData.badge}
                         </span>
                       </div>
                       <p className="font-mono text-xs text-zinc-400 dark:text-zinc-500">@{leetcodeData.handle}</p>
@@ -118,7 +124,7 @@ export default function Competitions() {
                     href={`https://leetcode.com/u/${leetcodeData.handle}/`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-100 hover:border-zinc-400 transition-all shrink-0"
+                    className="w-8 h-8 rounded-full border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all shrink-0"
                     title="Open LeetCode Profile"
                   >
                     <ExternalLinkIcon size={14} />
@@ -126,71 +132,88 @@ export default function Competitions() {
                 </div>
 
                 {/* Metrics */}
-                <div className="grid grid-cols-3 gap-3 mb-6 p-4 rounded-xl bg-zinc-50 dark:bg-zinc-950/60 border border-zinc-200/70 dark:border-zinc-800/70">
+                <div className="grid grid-cols-3 gap-3 mb-6 p-4 rounded-xl bg-zinc-50/70 dark:bg-zinc-950/40 border border-zinc-200/60 dark:border-zinc-800/60">
                   <div>
-                    <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500">Rating</div>
-                    <div className="font-mono text-2xl font-bold text-zinc-900 dark:text-zinc-100">{leetcodeData.rating}</div>
+                    <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-0.5">Rating</div>
+                    <div className="font-mono text-2xl font-bold text-amber-500 dark:text-amber-400 tracking-tight">{leetcodeData.rating}</div>
                   </div>
                   <div>
-                    <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500">Top %</div>
-                    <div className="font-mono text-2xl font-bold text-amber-600 dark:text-amber-400">
+                    <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-0.5">Top %</div>
+                    <div className="font-mono text-2xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
                       {leetcodeData.topPercentage}%
                     </div>
                   </div>
                   <div>
-                    <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500">Contests</div>
-                    <div className="font-mono text-2xl font-bold text-zinc-900 dark:text-zinc-100">{leetcodeData.contestsAttended}</div>
+                    <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-0.5">Contests</div>
+                    <div className="font-mono text-2xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">{leetcodeData.contestsAttended}</div>
                   </div>
                 </div>
 
-                {/* Problem Solving Breakdown with GREEN highlights */}
+                {/* Problem Solving Breakdown */}
                 <div className="space-y-2.5 mb-4">
                   <div className="flex justify-between items-center text-xs font-mono">
-                    <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1.5">
+                    <span className="text-emerald-500 dark:text-emerald-400 font-bold flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full bg-emerald-500" />
                       Problems Solved: {leetcodeData.totalSolved}
                     </span>
-                    <span className="text-emerald-600 dark:text-emerald-400 font-bold">
+                    <span className="text-zinc-500 dark:text-zinc-400">
                       Global Rank: #{leetcodeData.globalRanking.toLocaleString()}
                     </span>
                   </div>
 
                   {/* Progress Bar */}
-                  <div className="h-2.5 rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden flex">
-                    <div style={{ width: `${(leetcodeData.easySolved / leetcodeData.totalSolved) * 100}%` }} className="bg-emerald-500" title={`Easy: ${leetcodeData.easySolved}`} />
-                    <div style={{ width: `${(leetcodeData.mediumSolved / leetcodeData.totalSolved) * 100}%` }} className="bg-amber-500" title={`Medium: ${leetcodeData.mediumSolved}`} />
-                    <div style={{ width: `${(leetcodeData.hardSolved / leetcodeData.totalSolved) * 100}%` }} className="bg-rose-500" title={`Hard: ${leetcodeData.hardSolved}`} />
+                  <div className="h-2 rounded-full bg-zinc-100 dark:bg-zinc-800/90 overflow-hidden flex gap-0.5 p-0.5">
+                    <div style={{ width: `${(leetcodeData.easySolved / leetcodeData.totalSolved) * 100}%` }} className="h-full rounded-full bg-emerald-500" title={`Easy: ${leetcodeData.easySolved}`} />
+                    <div style={{ width: `${(leetcodeData.mediumSolved / leetcodeData.totalSolved) * 100}%` }} className="h-full rounded-full bg-amber-500" title={`Medium: ${leetcodeData.mediumSolved}`} />
+                    <div style={{ width: `${(leetcodeData.hardSolved / leetcodeData.totalSolved) * 100}%` }} className="h-full rounded-full bg-rose-500" title={`Hard: ${leetcodeData.hardSolved}`} />
                   </div>
 
                   <div className="flex justify-between items-center text-[11px] font-mono pt-0.5 text-zinc-500 dark:text-zinc-400">
-                    <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Easy: <strong>{leetcodeData.easySolved}</strong></span>
-                    <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-amber-500" /> Medium: <strong>{leetcodeData.mediumSolved}</strong></span>
-                    <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-rose-500" /> Hard: <strong>{leetcodeData.hardSolved}</strong></span>
+                    <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Easy: <strong className="text-zinc-800 dark:text-zinc-200">{leetcodeData.easySolved}</strong></span>
+                    <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-amber-500" /> Medium: <strong className="text-zinc-800 dark:text-zinc-200">{leetcodeData.mediumSolved}</strong></span>
+                    <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-rose-500" /> Hard: <strong className="text-zinc-800 dark:text-zinc-200">{leetcodeData.hardSolved}</strong></span>
                   </div>
                 </div>
 
                 {/* Badges / Awards List */}
                 <div className="pt-3 border-t border-zinc-200/60 dark:border-zinc-800/60 mt-3">
-                  <div className="text-[11px] font-mono text-zinc-400 mb-2 flex items-center justify-between">
-                    <span>🏆 Badges Earned ({leetcodeData.badgesCount}):</span>
-                    <span className="text-emerald-500 font-semibold">Top {leetcodeData.topPercentage}% Worldwide</span>
+                  <div className="text-[11px] font-mono text-zinc-400 dark:text-zinc-500 mb-2.5 flex items-center justify-between">
+                    <span className="flex items-center gap-1.5">
+                      <svg className="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+                        <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                        <path d="M4 22h16"/>
+                        <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+                        <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+                        <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+                      </svg>
+                      Badges Earned ({leetcodeData.badgesCount}):
+                    </span>
+                    <span className="text-xs font-mono font-medium text-zinc-500 dark:text-zinc-400">
+                      Top {leetcodeData.topPercentage}% Worldwide
+                    </span>
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {leetcodeData.badgesList.map((b, idx) => (
                       <span
                         key={idx}
-                        className="px-2.5 py-1 rounded-lg text-[10.5px] font-mono font-medium bg-zinc-100 dark:bg-zinc-800/70 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700/80 flex items-center gap-1"
+                        className="px-2.5 py-1 rounded-md text-[11px] font-mono font-medium bg-zinc-100/90 dark:bg-zinc-800/60 text-zinc-700 dark:text-zinc-300 border border-zinc-200/70 dark:border-zinc-700/60 flex items-center gap-1.5 hover:border-zinc-300 dark:hover:border-zinc-600 transition-colors"
                         title={b.date}
                       >
-                        <span>{b.icon}</span> {b.name}
+                        <span className="text-xs">{b.icon}</span> {b.name}
                       </span>
                     ))}
                   </div>
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-zinc-200/60 dark:border-zinc-800/60 mt-4 flex items-center justify-between text-xs text-zinc-400 font-mono">
-                <span className="text-emerald-600 dark:text-emerald-400 font-semibold">🏅 Verified {leetcodeData.badge} Title</span>
+              <div className="pt-4 border-t border-zinc-200/60 dark:border-zinc-800/60 mt-4 flex items-center justify-between text-xs text-zinc-400 dark:text-zinc-500 font-mono">
+                <span className="text-zinc-700 dark:text-zinc-300 font-medium flex items-center gap-1.5">
+                  <svg className="w-3.5 h-3.5 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  Verified {leetcodeData.badge} Title
+                </span>
                 <span>{leetcodeData.contestsAttended} Rated Contests</span>
               </div>
             </div>
@@ -198,18 +221,19 @@ export default function Competitions() {
 
           {/* Codeforces Card */}
           <Reveal delay={200}>
-            <div className="p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm hover:border-blue-500/40 hover:shadow-lg transition-all duration-300 h-full flex flex-col justify-between">
+            <div className="p-7 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/60 backdrop-blur-md hover:border-blue-500/30 hover:shadow-xl transition-all duration-300 h-full flex flex-col justify-between">
               <div>
                 <div className="flex items-start justify-between gap-4 mb-5">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-500 font-bold text-xl">
-                      🏆
+                    <div className="w-11 h-11 rounded-xl bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200/80 dark:border-zinc-700/80 p-2 flex items-center justify-center shrink-0 shadow-sm">
+                      <img src="/codeforces.svg" alt="Codeforces" className="w-full h-full object-contain" />
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <h3 className="font-bold text-zinc-900 dark:text-zinc-100 text-lg">Codeforces</h3>
-                        <span className="px-2.5 py-0.5 rounded-md text-[11px] font-mono font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 capitalize flex items-center gap-1">
-                          {codeforcesData.rank} 🟢
+                        <h3 className="font-bold text-zinc-900 dark:text-zinc-100 text-lg tracking-tight">Codeforces</h3>
+                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 capitalize flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                          {codeforcesData.rank}
                         </span>
                       </div>
                       <p className="font-mono text-xs text-zinc-400 dark:text-zinc-500">@{codeforcesData.handle}</p>
@@ -220,7 +244,7 @@ export default function Competitions() {
                     href={`https://codeforces.com/profile/${codeforcesData.handle}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-100 hover:border-zinc-400 transition-all shrink-0"
+                    className="w-8 h-8 rounded-full border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all shrink-0"
                     title="Open Codeforces Profile"
                   >
                     <ExternalLinkIcon size={14} />
@@ -228,44 +252,65 @@ export default function Competitions() {
                 </div>
 
                 {/* Metrics */}
-                <div className="grid grid-cols-3 gap-3 mb-6 p-4 rounded-xl bg-zinc-50 dark:bg-zinc-950/60 border border-zinc-200/70 dark:border-zinc-800/70">
+                <div className="grid grid-cols-3 gap-3 mb-6 p-4 rounded-xl bg-zinc-50/70 dark:bg-zinc-950/40 border border-zinc-200/60 dark:border-zinc-800/60">
                   <div>
-                    <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500">Rating</div>
-                    <div className="font-mono text-2xl font-bold text-emerald-600 dark:text-emerald-400">{codeforcesData.rating}</div>
+                    <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-0.5">Rating</div>
+                    <div className="font-mono text-2xl font-bold text-emerald-500 dark:text-emerald-400 tracking-tight">{codeforcesData.rating}</div>
                   </div>
                   <div>
-                    <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500">Max Rating</div>
-                    <div className="font-mono text-2xl font-bold text-zinc-900 dark:text-zinc-100">{codeforcesData.maxRating}</div>
+                    <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-0.5">Max Rating</div>
+                    <div className="font-mono text-2xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">{codeforcesData.maxRating}</div>
                   </div>
                   <div>
-                    <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500">Rounds</div>
-                    <div className="font-mono text-2xl font-bold text-zinc-900 dark:text-zinc-100">{codeforcesData.contestsAttended}</div>
+                    <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-0.5">Rounds</div>
+                    <div className="font-mono text-2xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">{codeforcesData.contestsAttended}</div>
                   </div>
                 </div>
 
                 {/* Highlights */}
                 <div className="space-y-2.5 text-xs text-zinc-600 dark:text-zinc-400">
                   <div className="flex items-center justify-between p-2.5 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-50/50 dark:bg-zinc-950/30">
-                    <span>🏛️ Institution / Organization</span>
+                    <span className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400">
+                      <svg className="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M3 21h18M5 21V9l7-5 7 5v12M9 14h6M9 18h6"/>
+                      </svg>
+                      Institution / Organization
+                    </span>
                     <strong className="font-semibold text-zinc-800 dark:text-zinc-200">{codeforcesData.organization}</strong>
                   </div>
                   <div className="flex items-center justify-between p-2.5 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-50/50 dark:bg-zinc-950/30">
-                    <span>📈 Peak Rank &amp; Rating</span>
-                    <strong className="font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
-                      +{codeforcesData.maxRating} Peak ({codeforcesData.maxRank})
+                    <span className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400">
+                      <svg className="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                        <polyline points="17 6 23 6 23 12"/>
+                      </svg>
+                      Peak Rank &amp; Rating
+                    </span>
+                    <strong className="font-mono text-zinc-800 dark:text-zinc-200 font-semibold flex items-center gap-1.5">
+                      <span>+{codeforcesData.maxRating} Peak</span>
+                      <span className="text-zinc-500 dark:text-zinc-400 font-normal">({codeforcesData.maxRank})</span>
                     </strong>
                   </div>
                   {codeforcesData.city && (
                     <div className="flex items-center justify-between p-2.5 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-50/50 dark:bg-zinc-950/30">
-                      <span>📍 City / Region</span>
+                      <span className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400">
+                        <svg className="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                          <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        City / Region
+                      </span>
                       <strong className="font-semibold text-zinc-800 dark:text-zinc-200">{codeforcesData.city}</strong>
                     </div>
                   )}
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-zinc-200/60 dark:border-zinc-800/60 mt-4 flex items-center justify-between text-xs text-zinc-400 font-mono">
-                <span className="text-emerald-600 dark:text-emerald-400 font-semibold">🎯 Active {codeforcesData.rank} Rank</span>
+              <div className="pt-4 border-t border-zinc-200/60 dark:border-zinc-800/60 mt-4 flex items-center justify-between text-xs text-zinc-400 dark:text-zinc-500 font-mono">
+                <span className="text-zinc-700 dark:text-zinc-300 font-medium flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
+                  Active {codeforcesData.rank} Rank
+                </span>
                 <span>{codeforcesData.contestsAttended} Rated Rounds</span>
               </div>
             </div>
@@ -275,7 +320,7 @@ export default function Competitions() {
 
         {/* Live Rating Progression Graph */}
         <Reveal delay={300}>
-          <div className="p-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm shadow-md">
+          <div className="p-7 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/60 backdrop-blur-md shadow-md">
             
             {/* Chart Header + Tabs */}
             <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
@@ -289,26 +334,28 @@ export default function Competitions() {
               </div>
 
               {/* Toggle Tabs */}
-              <div className="flex items-center gap-1.5 p-1 rounded-xl bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
+              <div className="flex items-center gap-1.5 p-1 rounded-xl bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700/80">
                 <button
                   onClick={() => { setActiveTab('leetcode'); setHoveredPoint(null); }}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all ${
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all flex items-center gap-1.5 ${
                     activeTab === 'leetcode'
                       ? 'bg-white dark:bg-zinc-900 text-amber-600 dark:text-amber-400 shadow-sm border border-zinc-200/60 dark:border-zinc-700/60 font-semibold'
                       : 'text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200'
                   }`}
                 >
-                  ⚡ LeetCode ({leetcodeData.rating})
+                  <span className="w-2 h-2 rounded-full bg-amber-500 inline-block" />
+                  LeetCode ({leetcodeData.rating})
                 </button>
                 <button
                   onClick={() => { setActiveTab('codeforces'); setHoveredPoint(null); }}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all ${
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all flex items-center gap-1.5 ${
                     activeTab === 'codeforces'
                       ? 'bg-white dark:bg-zinc-900 text-emerald-600 dark:text-emerald-400 shadow-sm border border-zinc-200/60 dark:border-zinc-700/60 font-semibold'
                       : 'text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200'
                   }`}
                 >
-                  🏆 Codeforces ({codeforcesData.rating})
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
+                  Codeforces ({codeforcesData.rating})
                 </button>
               </div>
             </div>
@@ -322,12 +369,12 @@ export default function Competitions() {
                 <defs>
                   {/* LeetCode Gradient */}
                   <linearGradient id="leetcodeGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.35" />
+                    <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.25" />
                     <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.0" />
                   </linearGradient>
                   {/* Codeforces Gradient */}
                   <linearGradient id="codeforcesGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#10b981" stopOpacity="0.35" />
+                    <stop offset="0%" stopColor="#10b981" stopOpacity="0.25" />
                     <stop offset="100%" stopColor="#10b981" stopOpacity="0.0" />
                   </linearGradient>
                 </defs>
@@ -373,7 +420,7 @@ export default function Competitions() {
                     d={pathD}
                     fill="none"
                     stroke={activeTab === 'leetcode' ? '#f59e0b' : '#10b981'}
-                    strokeWidth="3"
+                    strokeWidth="2.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
@@ -390,7 +437,7 @@ export default function Competitions() {
                         <circle
                           cx={pt.x}
                           cy={pt.y}
-                          r="12"
+                          r="10"
                           fill={color}
                           opacity="0.25"
                         />
@@ -399,10 +446,10 @@ export default function Competitions() {
                       <circle
                         cx={pt.x}
                         cy={pt.y}
-                        r={isHovered ? '6' : '4'}
+                        r={isHovered ? '5' : '3.5'}
                         fill={color}
                         stroke="#fff"
-                        strokeWidth="2"
+                        strokeWidth="1.5"
                         className="transition-all duration-150"
                         onMouseEnter={() => setHoveredPoint(pt)}
                       />
@@ -439,8 +486,14 @@ export default function Competitions() {
                       <span className="text-zinc-700 dark:text-zinc-300">{hoveredPoint.data.solved}/4</span>
                     </div>
                   )}
-                  <div className="text-[10px] text-zinc-400 pt-1 border-t border-zinc-100 dark:border-zinc-800 mt-1 font-mono">
-                    📅 {hoveredPoint.data.date}
+                  <div className="text-[10px] text-zinc-400 dark:text-zinc-500 pt-1 border-t border-zinc-100 dark:border-zinc-800 mt-1 font-mono flex items-center gap-1">
+                    <svg className="w-3 h-3 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                      <line x1="16" y1="2" x2="16" y2="6"/>
+                      <line x1="8" y1="2" x2="8" y2="6"/>
+                      <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                    {hoveredPoint.data.date}
                   </div>
                 </div>
               )}
@@ -449,8 +502,12 @@ export default function Competitions() {
             {/* Bottom Timeline Legend */}
             <div className="flex justify-between items-center pt-3 border-t border-zinc-100 dark:border-zinc-800 text-[11px] font-mono text-zinc-400">
               <span>{points[0]?.data.date || 'Earlier'}</span>
-              <span className="text-emerald-600 dark:text-emerald-400 font-semibold">
-                {activeTab === 'leetcode' ? `📈 Peak: ${leetcodeData.rating} (${leetcodeData.badge})` : `📈 Peak: ${codeforcesData.maxRating} (${codeforcesData.rank})`}
+              <span className="text-zinc-700 dark:text-zinc-300 font-medium flex items-center gap-1.5">
+                <svg className="w-3.5 h-3.5 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                  <polyline points="17 6 23 6 23 12"/>
+                </svg>
+                {activeTab === 'leetcode' ? `Peak: ${leetcodeData.rating} (${leetcodeData.badge})` : `Peak: ${codeforcesData.maxRating} (${codeforcesData.rank})`}
               </span>
               <span>{points[points.length - 1]?.data.date || 'Latest'}</span>
             </div>
