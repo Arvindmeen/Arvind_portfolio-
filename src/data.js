@@ -36,7 +36,7 @@ export const skills = [
   // ── 1. Core CS & Fundamentals ──
   {
     name: 'DSA',
-    icon: null,
+    icon: '/skills/dsa.svg',
     emoji: '🧠',
     cat: 'core-cs',
     project: 'Competitive Programming & Algorithms',
@@ -45,7 +45,7 @@ export const skills = [
   },
   {
     name: 'System Design',
-    icon: null,
+    icon: '/skills/system-design.svg',
     emoji: '📐',
     cat: 'core-cs',
     project: 'Book My Train & RideTrack',
@@ -54,7 +54,7 @@ export const skills = [
   },
   {
     name: 'OOP',
-    icon: null,
+    icon: '/skills/oop.svg',
     emoji: '🧩',
     cat: 'core-cs',
     project: "Rubik's Cube Solver",
@@ -97,25 +97,23 @@ export const skills = [
   },
   {
     name: 'Express.js',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
+    icon: '/skills/express.svg',
     cat: 'backend',
-    invert: true,
     project: 'Book My Train & Atlys',
     summary: 'Built centralized API Gateway with rate limiting, JWT authentication, circuit breakers & CORS.',
     highlight: 'API Gateway Routing'
   },
   {
     name: 'Prisma ORM',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg',
+    icon: '/skills/prisma.svg',
     cat: 'backend',
-    invert: true,
     project: 'Backend Applications',
     summary: 'Type-safe database modeling, automated schema migrations, relation queries & connection pooling.',
     highlight: 'Type-Safe ORM'
   },
   {
     name: 'REST API',
-    icon: null,
+    icon: '/skills/rest-api.svg',
     emoji: '🔗',
     cat: 'backend',
     project: 'Atlys Workforce Technologies',
@@ -123,8 +121,17 @@ export const skills = [
     highlight: '15+ Documented Endpoints'
   },
   {
+    name: 'GraphQL',
+    icon: '/skills/graphql.svg',
+    emoji: '◈',
+    cat: 'backend',
+    project: 'API Architecture & Query Layer',
+    summary: 'Declarative data fetching with strongly typed schemas, custom resolvers, mutations & eliminating over-fetching.',
+    highlight: 'Typed Schemas & Resolvers'
+  },
+  {
     name: 'API Gateway',
-    icon: null,
+    icon: '/skills/api-gateway.svg',
     emoji: '🚪',
     cat: 'backend',
     project: 'Book My Train',
@@ -133,7 +140,7 @@ export const skills = [
   },
   {
     name: 'WebSockets',
-    icon: null,
+    icon: '/skills/websockets.svg',
     emoji: '⚡',
     cat: 'backend',
     project: 'RideTrack Platform',
@@ -142,7 +149,7 @@ export const skills = [
   },
   {
     name: 'JWT',
-    icon: null,
+    icon: '/skills/jwt.svg',
     emoji: '🔐',
     cat: 'backend',
     project: 'Atlys & Book My Train',
@@ -151,7 +158,7 @@ export const skills = [
   },
   {
     name: 'RBAC',
-    icon: null,
+    icon: '/skills/rbac.svg',
     emoji: '🛡️',
     cat: 'backend',
     project: 'Atlys Workforce Technologies',
@@ -162,7 +169,7 @@ export const skills = [
   // ── 3. Distributed Systems & Architecture ──
   {
     name: 'Microservices',
-    icon: null,
+    icon: '/skills/microservices.svg',
     emoji: '🏗️',
     cat: 'dist-sys',
     project: 'Book My Train',
@@ -196,7 +203,7 @@ export const skills = [
   },
   {
     name: 'Rate Limiting',
-    icon: null,
+    icon: '/skills/ratelimiting.svg',
     emoji: '⏱️',
     cat: 'dist-sys',
     project: 'RideTrack & Book My Train',
@@ -205,7 +212,7 @@ export const skills = [
   },
   {
     name: 'Idempotency',
-    icon: null,
+    icon: '/skills/idempotency.svg',
     emoji: '🔁',
     cat: 'dist-sys',
     project: 'Book My Train',
@@ -214,7 +221,7 @@ export const skills = [
   },
   {
     name: 'Saga Pattern',
-    icon: null,
+    icon: '/skills/saga.svg',
     emoji: '🔄',
     cat: 'dist-sys',
     project: 'Book My Train',
@@ -223,7 +230,7 @@ export const skills = [
   },
   {
     name: 'Dist. Txns',
-    icon: null,
+    icon: '/skills/dist-txns.svg',
     emoji: '⚙️',
     cat: 'dist-sys',
     project: 'Book My Train',
@@ -232,7 +239,7 @@ export const skills = [
   },
   {
     name: 'H3 Indexing',
-    icon: null,
+    icon: '/skills/h3.svg',
     emoji: '🌐',
     cat: 'dist-sys',
     project: 'RideTrack Platform',
@@ -241,7 +248,7 @@ export const skills = [
   },
   {
     name: 'Apache Flink',
-    icon: null,
+    icon: '/skills/flink.svg',
     emoji: '🌊',
     cat: 'dist-sys',
     project: 'RideTrack Platform',
@@ -276,7 +283,7 @@ export const skills = [
   },
   {
     name: 'Redis Geo',
-    icon: null,
+    icon: '/skills/redis-geo.svg',
     emoji: '🗺️',
     cat: 'database',
     project: 'RideTrack Platform',
@@ -293,7 +300,7 @@ export const skills = [
   },
   {
     name: 'Elasticsearch',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elasticsearch/elasticsearch-original.svg',
+    icon: '/skills/elasticsearch.svg',
     cat: 'database',
     project: 'Book My Train',
     summary: 'Implemented full-text & fuzzy search indexing across stations, routes and train schedules.',
@@ -301,6 +308,14 @@ export const skills = [
   },
 
   // ── 5. Languages ──
+  {
+    name: 'C',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg',
+    cat: 'language',
+    project: 'Systems Programming & OS',
+    summary: 'Low-level memory pointers, struct alignment, system calls, and data structure implementations.',
+    highlight: 'Manual Memory Control'
+  },
   {
     name: 'C++',
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg',
@@ -333,19 +348,11 @@ export const skills = [
     summary: 'Static type safety, interfaces, union types, and strict contracts across client and server.',
     highlight: 'Strict Type Safety'
   },
-  {
-    name: 'C',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg',
-    cat: 'language',
-    project: 'Systems Programming & OS',
-    summary: 'Low-level memory pointers, struct alignment, system calls, and data structure implementations.',
-    highlight: 'Manual Memory Control'
-  },
 
   // ── 6. DevOps, Cloud & Tools ──
   {
     name: 'AWS (EC2, S3)',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg',
+    icon: '/skills/aws.svg',
     cat: 'tools',
     project: 'Cloud Deployment',
     summary: 'Configured EC2 virtual instances for backend services and S3 buckets for secure cloud file storage.',
@@ -402,9 +409,8 @@ export const skills = [
   },
   {
     name: 'Vercel',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg',
+    icon: '/skills/vercel.svg',
     cat: 'tools',
-    invert: true,
     project: 'Web Deployments',
     summary: 'Serverless edge continuous deployment with instant preview builds and global CDN acceleration.',
     highlight: 'Edge Serverless'
@@ -419,7 +425,7 @@ export const skills = [
   },
   {
     name: 'Railway',
-    icon: null,
+    icon: '/skills/railway.svg',
     emoji: '🚂',
     cat: 'tools',
     project: 'Backend Hosting',
@@ -428,7 +434,7 @@ export const skills = [
   },
   {
     name: 'Render',
-    icon: null,
+    icon: '/skills/render.svg',
     emoji: '☁️',
     cat: 'tools',
     project: 'Web Services',

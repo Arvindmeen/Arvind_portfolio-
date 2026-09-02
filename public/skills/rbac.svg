@@ -1,0 +1,11 @@
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="10" fill="#0B132B"/>
+  <!-- Security Shield Outer -->
+  <path d="M24 6L38 12V24C38 33 24 42 24 42C24 42 10 33 10 24V12L24 6Z" fill="#1C2541" stroke="#3A506B" stroke-width="2"/>
+  <!-- Inner Identity Hierarchy -->
+  <circle cx="24" cy="18" r="4.5" fill="#48E5C2"/>
+  <path d="M16 30C16 26.5 19.5 24.5 24 24.5C28.5 24.5 32 26.5 32 30V32H16V30Z" fill="#5BC0BE"/>
+  <!-- Lock Keyhole -->
+  <circle cx="24" cy="27" r="1.5" fill="#0B132B"/>
+  <rect x="23.2" y="27" width="1.6" height="3" fill="#0B132B"/>
+</svg>

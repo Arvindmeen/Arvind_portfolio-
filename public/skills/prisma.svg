@@ -1,0 +1,9 @@
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="10" fill="#0C344B"/>
+  <!-- Prisma Multifaceted Prism -->
+  <path d="M22.5 7.5L38 38H11L22.5 7.5Z" fill="#16A394"/>
+  <path d="M22.5 7.5L11 38H8.5L22.5 7.5Z" fill="#2D3748"/>
+  <path d="M22.5 7.5L30 38H38L22.5 7.5Z" fill="#5A67D8"/>
+  <path d="M22.5 7.5L18 38H27L22.5 7.5Z" fill="#2B6CB0"/>
+  <path d="M22.5 7.5L27 38H33L22.5 7.5Z" fill="#319795"/>
+</svg>

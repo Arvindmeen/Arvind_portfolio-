@@ -1,0 +1,23 @@
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="10" fill="#0F172A"/>
+  <!-- Client -->
+  <rect x="18" y="5" width="12" height="6" rx="2" fill="#38BDF8"/>
+  <!-- Arrows -->
+  <path d="M24 11V16" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="2 2"/>
+  <!-- Load Balancer / Gateway -->
+  <rect x="12" y="16" width="24" height="6" rx="3" fill="#818CF8"/>
+  <circle cx="16" cy="19" r="1.2" fill="#FFF"/>
+  <circle cx="24" cy="19" r="1.2" fill="#FFF"/>
+  <circle cx="32" cy="19" r="1.2" fill="#FFF"/>
+  <!-- Distribute Lines -->
+  <path d="M16 22V27M24 22V27M32 22V27" stroke="#94A3B8" stroke-width="1.5"/>
+  <!-- Microservices -->
+  <rect x="7" y="27" width="9" height="7" rx="2" fill="#34D399"/>
+  <rect x="19.5" y="27" width="9" height="7" rx="2" fill="#FBBF24"/>
+  <rect x="32" y="27" width="9" height="7" rx="2" fill="#F472B6"/>
+  <!-- DB / Cache lines -->
+  <path d="M11.5 34V38M36.5 34V38" stroke="#64748B" stroke-width="1.2"/>
+  <!-- Databases / Cache -->
+  <rect x="6" y="38" width="11" height="5" rx="2" fill="#0284C7"/>
+  <rect x="31" y="38" width="11" height="5" rx="2" fill="#E11D48"/>
+</svg>

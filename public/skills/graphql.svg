@@ -1,0 +1,24 @@
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="10" fill="#0B0D14"/>
+  <!-- GraphQL Hexagonal Graph Geometry -->
+  <path d="M24 7.5L38.3 15.75V32.25L24 40.5L9.7 32.25V15.75L24 7.5Z" stroke="#E10098" stroke-width="2.2" stroke-linejoin="round"/>
+  <!-- Internal chords forming triangle and central star -->
+  <path d="M9.7 15.75L38.3 32.25" stroke="#E10098" stroke-width="1.8"/>
+  <path d="M9.7 32.25L38.3 15.75" stroke="#E10098" stroke-width="1.8"/>
+  <path d="M24 7.5V40.5" stroke="#E10098" stroke-width="1.8"/>
+  <path d="M24 7.5L9.7 32.25H38.3L24 7.5Z" stroke="#E10098" stroke-width="1.8" stroke-linejoin="round"/>
+  <!-- Vertices / Nodes -->
+  <circle cx="24" cy="7.5" r="3.2" fill="#E10098"/>
+  <circle cx="38.3" cy="15.75" r="3.2" fill="#E10098"/>
+  <circle cx="38.3" cy="32.25" r="3.2" fill="#E10098"/>
+  <circle cx="24" cy="40.5" r="3.2" fill="#E10098"/>
+  <circle cx="9.7" cy="32.25" r="3.2" fill="#E10098"/>
+  <circle cx="9.7" cy="15.75" r="3.2" fill="#E10098"/>
+  <!-- Node Center Glow Dots -->
+  <circle cx="24" cy="7.5" r="1.2" fill="#FFFFFF"/>
+  <circle cx="38.3" cy="15.75" r="1.2" fill="#FFFFFF"/>
+  <circle cx="38.3" cy="32.25" r="1.2" fill="#FFFFFF"/>
+  <circle cx="24" cy="40.5" r="1.2" fill="#FFFFFF"/>
+  <circle cx="9.7" cy="32.25" r="1.2" fill="#FFFFFF"/>
+  <circle cx="9.7" cy="15.75" r="1.2" fill="#FFFFFF"/>
+</svg>

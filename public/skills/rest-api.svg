@@ -1,0 +1,23 @@
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="10" fill="#0F172A"/>
+  <!-- Central REST API Hub -->
+  <circle cx="24" cy="24" r="7" fill="#3B82F6"/>
+  <text x="24" y="27" font-family="sans-serif" font-size="7" font-weight="bold" fill="#FFF" text-anchor="middle">API</text>
+  <!-- Method badges -->
+  <!-- GET (Green) -->
+  <rect x="5" y="8" width="16" height="7" rx="2" fill="#10B981"/>
+  <text x="13" y="13.5" font-family="monospace" font-size="6" font-weight="bold" fill="#FFF" text-anchor="middle">GET</text>
+  <path d="M18 15L22 20" stroke="#10B981" stroke-width="1.5"/>
+  <!-- POST (Blue) -->
+  <rect x="27" y="8" width="16" height="7" rx="2" fill="#3B82F6"/>
+  <text x="35" y="13.5" font-family="monospace" font-size="6" font-weight="bold" fill="#FFF" text-anchor="middle">POST</text>
+  <path d="M30 15L26 20" stroke="#3B82F6" stroke-width="1.5"/>
+  <!-- PUT (Amber) -->
+  <rect x="5" y="33" width="16" height="7" rx="2" fill="#F59E0B"/>
+  <text x="13" y="38.5" font-family="monospace" font-size="6" font-weight="bold" fill="#FFF" text-anchor="middle">PUT</text>
+  <path d="M18 33L22 28" stroke="#F59E0B" stroke-width="1.5"/>
+  <!-- DEL (Rose) -->
+  <rect x="27" y="33" width="16" height="7" rx="2" fill="#EF4444"/>
+  <text x="35" y="38.5" font-family="monospace" font-size="6" font-weight="bold" fill="#FFF" text-anchor="middle">DEL</text>
+  <path d="M30 33L26 28" stroke="#EF4444" stroke-width="1.5"/>
+</svg>

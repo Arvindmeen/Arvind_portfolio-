@@ -1,0 +1,6 @@
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="10" fill="#000000"/>
+  <!-- Render R Logo in signature teal/white -->
+  <path d="M15 12H26C29.87 12 33 15.13 33 19C33 22.87 29.87 26 26 26H20V36H15V12Z" fill="#46E3B7"/>
+  <path d="M26 26L33 36H27L21 26H26Z" fill="#FFFFFF"/>
+</svg>

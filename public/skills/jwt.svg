@@ -1,0 +1,12 @@
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="10" fill="#0B0F19"/>
+  <!-- Official JWT 3-segment ring -->
+  <!-- Magenta Header Segment -->
+  <path d="M24 10A14 14 0 0 1 36.1 17L30.1 20.5A7 7 0 0 0 24 17V10Z" fill="#FB015B"/>
+  <!-- Cyan Payload Segment -->
+  <path d="M36.1 17A14 14 0 0 1 36.1 31L30.1 27.5A7 7 0 0 0 30.1 20.5L36.1 17Z" fill="#00B9F1"/>
+  <!-- Blue Signature Segment -->
+  <path d="M36.1 31A14 14 0 1 1 24 10V17A7 7 0 1 0 30.1 27.5L36.1 31Z" fill="#D63AFF"/>
+  <!-- JWT Text in center -->
+  <text x="24" y="27" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" font-weight="900" fill="#FFFFFF" text-anchor="middle">JWT</text>
+</svg>

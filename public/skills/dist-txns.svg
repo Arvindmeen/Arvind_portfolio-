@@ -1,0 +1,16 @@
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="10" fill="#18181B"/>
+  <!-- Two Phase Commit DB 1 -->
+  <ellipse cx="15" cy="18" rx="7" ry="3" fill="#38BDF8"/>
+  <path d="M8 18V28C8 29.6 11.1 31 15 31C18.9 31 22 29.6 22 28V18" fill="#0284C7"/>
+  <ellipse cx="15" cy="28" rx="7" ry="3" fill="#38BDF8"/>
+  <!-- DB 2 -->
+  <ellipse cx="33" cy="18" rx="7" ry="3" fill="#A855F7"/>
+  <path d="M26 18V28C26 29.6 29.1 31 33 31C36.9 31 40 29.6 40 28V18" fill="#7E22CE"/>
+  <ellipse cx="33" cy="28" rx="7" ry="3" fill="#A855F7"/>
+  <!-- Sync / Lock Arrows -->
+  <path d="M21 21H27M27 27H21" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+  <!-- Lock Core -->
+  <rect x="21" y="21" width="6" height="6" rx="1.5" fill="#F59E0B"/>
+  <circle cx="24" cy="24" r="1" fill="#FFF"/>
+</svg>

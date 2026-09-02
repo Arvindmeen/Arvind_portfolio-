@@ -1,0 +1,11 @@
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="10" fill="#0F172A"/>
+  <!-- Bidirectional Wave / Sockets -->
+  <path d="M12 24C12 17.37 17.37 12 24 12C28.4 12 32.2 14.4 34.2 18" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
+  <path d="M36 24C36 30.63 30.63 36 24 36C19.6 36 15.8 33.6 13.8 30" stroke="#F43F5E" stroke-width="3" stroke-linecap="round"/>
+  <!-- Arrows -->
+  <polygon points="36,13 36,20 29,18" fill="#38BDF8"/>
+  <polygon points="12,35 12,28 19,30" fill="#F43F5E"/>
+  <!-- Central Pulse Dot -->
+  <circle cx="24" cy="24" r="3" fill="#FCD34D"/>
+</svg>

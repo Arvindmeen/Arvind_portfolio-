@@ -1,0 +1,18 @@
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="10" fill="#18181B"/>
+  <!-- Top Parent Class Box -->
+  <rect x="14" y="6" width="20" height="9" rx="3" fill="#6366F1"/>
+  <rect x="18" y="9.5" width="12" height="2" rx="1" fill="#FFF"/>
+  <!-- Inheritance Fork -->
+  <path d="M24 15V22M14 22H34M14 22V27M34 22V27" stroke="#A1A1AA" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Arrow Head -->
+  <path d="M21.5 17L24 14.5L26.5 17" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Derived Child Class 1 -->
+  <rect x="7" y="27" width="14" height="14" rx="3" fill="#06B6D4"/>
+  <circle cx="14" cy="32" r="2" fill="#FFF"/>
+  <rect x="10" y="36" width="8" height="2" rx="1" fill="#FFF" opacity="0.8"/>
+  <!-- Derived Child Class 2 -->
+  <rect x="27" y="27" width="14" height="14" rx="3" fill="#EC4899"/>
+  <circle cx="34" cy="32" r="2" fill="#FFF"/>
+  <rect x="30" y="36" width="8" height="2" rx="1" fill="#FFF" opacity="0.8"/>
+</svg>
