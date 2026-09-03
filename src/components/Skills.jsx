@@ -9,7 +9,7 @@ export default function Skills() {
   const filtered = active === 'all' ? skills : skills.filter(s => s.cat === active);
 
   return (
-    <section id="skills" className="py-24">
+    <section id="skills" className="py-14 md:py-16">
       <div className="max-w-5xl mx-auto px-6">
         
         {/* Section Header */}

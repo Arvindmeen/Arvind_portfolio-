@@ -61,7 +61,7 @@ export default function Competitions() {
   }, [chartData]);
 
   return (
-    <section id="competitions" className="py-24">
+    <section id="competitions" className="py-14 md:py-16">
       <div className="max-w-5xl mx-auto px-6">
         
         {/* Header */}

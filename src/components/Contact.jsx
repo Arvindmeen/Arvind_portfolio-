@@ -82,7 +82,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24">
+    <section id="contact" className="py-14 md:py-16">
       <div className="max-w-5xl mx-auto px-6">
         <Reveal>
           <div className="text-center mb-16">

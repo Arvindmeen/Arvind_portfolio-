@@ -11,7 +11,7 @@ const tags = [
 
 export default function About() {
   return (
-    <section id="about" className="py-24 bg-zinc-100/50 dark:bg-zinc-900/40">
+    <section id="about" className="py-14 md:py-16 bg-zinc-100/50 dark:bg-zinc-900/40">
       <div className="max-w-5xl mx-auto px-6">
         <div className="grid md:grid-cols-[1fr_1.6fr] gap-10 md:gap-16 items-start">
 
