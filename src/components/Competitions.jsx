@@ -206,6 +206,8 @@ export default function Competitions() {
                           : b.name.includes('100') ? 'https://assets.leetcode.com/static_assets/others/lg25100.png'
                           : b.name.includes('50') ? 'https://assets.leetcode.com/static_assets/others/lg2550.png'
                           : b.name.includes('Jul') ? 'https://leetcode.com/static/images/badges/dcc-2026-7.png'
+                          : b.name.includes('Jun') ? 'https://leetcode.com/static/images/badges/dcc-2026-6.png'
+                          : b.name.includes('Aug') ? 'https://leetcode.com/static/images/badges/dcc-2025-8.png'
                           : null);
 
                       return (
@@ -284,33 +286,37 @@ export default function Competitions() {
                     <div className="font-mono text-2xl font-bold text-emerald-500 dark:text-emerald-400 tracking-tight">{codeforcesData.rating}</div>
                   </div>
                   <div>
-                    <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-0.5">Max Rating</div>
-                    <div className="font-mono text-2xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">{codeforcesData.maxRating}</div>
+                    <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-0.5">Rank</div>
+                    <div className="font-mono text-2xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight capitalize">
+                      {codeforcesData.rank}
+                    </div>
                   </div>
                   <div>
-                    <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-0.5">Rounds</div>
+                    <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-0.5">Contests</div>
                     <div className="font-mono text-2xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">{codeforcesData.contestsAttended}</div>
                   </div>
                 </div>
 
-                {/* Highlights */}
-                <div className="space-y-2.5 text-xs text-zinc-600 dark:text-zinc-400">
+                {/* Codeforces Profile Meta Breakdown */}
+                <div className="space-y-2.5 mb-4 font-mono text-xs">
                   <div className="flex items-center justify-between p-2.5 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-50/50 dark:bg-zinc-950/30">
                     <span className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400">
                       <svg className="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M3 21h18M5 21V9l7-5 7 5v12M9 14h6M9 18h6"/>
+                        <path d="M3 21h18"/>
+                        <path d="M5 21V7l8-4v18"/>
+                        <path d="M19 21V11l-6-4"/>
                       </svg>
-                      Institution / Organization
+                      Organization
                     </span>
                     <strong className="font-semibold text-zinc-800 dark:text-zinc-200">{codeforcesData.organization}</strong>
                   </div>
+
                   <div className="flex items-center justify-between p-2.5 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-50/50 dark:bg-zinc-950/30">
                     <span className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400">
                       <svg className="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-                        <polyline points="17 6 23 6 23 12"/>
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                       </svg>
-                      Peak Rank &amp; Rating
+                      Peak Performance
                     </span>
                     <strong className="font-mono text-zinc-800 dark:text-zinc-200 font-semibold flex items-center gap-1.5">
                       <span>+{codeforcesData.maxRating} Peak</span>
@@ -326,7 +332,7 @@ export default function Competitions() {
                         </svg>
                         City / Region
                       </span>
-                      <strong className="font-semibold text-zinc-800 dark:text-zinc-200">{codeforcesData.city}</strong>
+                      <strong className="font-semibold text-zinc-800 dark:text-zinc-200">{codeforcesData.city?.normalize('NFD').replace(/[\u0300-\u036f]/g, '') || codeforcesData.city}</strong>
                     </div>
                   )}
                 </div>

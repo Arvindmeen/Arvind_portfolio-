@@ -7,6 +7,8 @@ export const BADGE_IMAGE_MAP = {
   '100 Days Badge 2025': 'https://assets.leetcode.com/static_assets/others/lg25100.png',
   '50 Days Badge 2025': 'https://assets.leetcode.com/static_assets/others/lg2550.png',
   'Jul LeetCoding Challenge': 'https://leetcode.com/static/images/badges/dcc-2026-7.png',
+  'Jun LeetCoding Challenge': 'https://leetcode.com/static/images/badges/dcc-2026-6.png',
+  'Aug LeetCoding Challenge': 'https://leetcode.com/static/images/badges/dcc-2025-8.png',
 };
 
 // Initial fallback snapshot data
@@ -29,6 +31,8 @@ export const INITIAL_LEETCODE = {
     { name: '100 Days Badge 2025', date: 'Dec 2025', icon: 'https://assets.leetcode.com/static_assets/others/lg25100.png' },
     { name: '50 Days Badge 2025', date: 'Jul 2025', icon: 'https://assets.leetcode.com/static_assets/others/lg2550.png' },
     { name: 'Jul LeetCoding Challenge', date: 'Jul 2026', icon: 'https://leetcode.com/static/images/badges/dcc-2026-7.png' },
+    { name: 'Jun LeetCoding Challenge', date: 'Jun 2026', icon: 'https://leetcode.com/static/images/badges/dcc-2026-6.png' },
+    { name: 'Aug LeetCoding Challenge', date: 'Aug 2025', icon: 'https://leetcode.com/static/images/badges/dcc-2025-8.png' },
   ],
   history: [
     { title: 'Weekly Contest 454', rating: 1495, rank: 11118, solved: 1, date: 'Jun 2024' },
@@ -53,7 +57,7 @@ export const INITIAL_CODEFORCES = {
   rank: 'pupil',
   maxRank: 'pupil',
   organization: 'IIT Kharagpur',
-  city: 'Morādābād',
+  city: 'Moradabad',
   contestsAttended: 25,
   history: [
     { title: 'Round 976 (Div. 2)', rating: 360, rank: 12170, date: 'Sep 2024' },
@@ -87,7 +91,7 @@ export function CompetitionProvider({ children }) {
           ...b,
           icon: BADGE_IMAGE_MAP[b.name] || (b.icon && (b.icon.startsWith('http') || b.icon.startsWith('/')) ? b.icon : BADGE_IMAGE_MAP[b.name]) || b.icon
         }));
-        return { ...INITIAL_LEETCODE, ...parsed, badgesList: badgesList.length > 0 ? badgesList : INITIAL_LEETCODE.badgesList };
+        return { ...INITIAL_LEETCODE, ...parsed, badgesList: badgesList.length >= 8 ? badgesList : INITIAL_LEETCODE.badgesList };
       }
       return INITIAL_LEETCODE;
     } catch {
@@ -98,7 +102,12 @@ export function CompetitionProvider({ children }) {
   const [codeforcesData, setCodeforcesData] = useState(() => {
     try {
       const cached = localStorage.getItem('portfolio_codeforces_data');
-      return cached ? { ...INITIAL_CODEFORCES, ...JSON.parse(cached) } : INITIAL_CODEFORCES;
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        const city = (parsed.city || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '') || 'Moradabad';
+        return { ...INITIAL_CODEFORCES, ...parsed, city };
+      }
+      return INITIAL_CODEFORCES;
     } catch {
       return INITIAL_CODEFORCES;
     }
@@ -117,6 +126,7 @@ export function CompetitionProvider({ children }) {
         const info = await res.json();
         if (info.status === 'OK' && info.result?.[0]) {
           const user = info.result[0];
+          const cleanCity = user.city ? user.city.normalize('NFD').replace(/[\u0300-\u036f]/g, '') : prev.city;
           setCodeforcesData(prev => {
             const updated = {
               ...prev,
@@ -125,7 +135,7 @@ export function CompetitionProvider({ children }) {
               rank: user.rank ?? prev.rank,
               maxRank: user.maxRank ?? prev.maxRank,
               organization: user.organization ?? prev.organization,
-              city: user.city ?? prev.city
+              city: cleanCity || 'Moradabad'
             };
             try { localStorage.setItem('portfolio_codeforces_data', JSON.stringify(updated)); } catch {}
             return updated;
@@ -250,7 +260,7 @@ export function CompetitionProvider({ children }) {
       if (res.ok) {
         const badges = await res.json();
         if (badges.badges && Array.isArray(badges.badges)) {
-          const list = badges.badges.slice(0, 6).map(b => {
+          const list = badges.badges.slice(0, 8).map(b => {
             let iconUrl = b.icon || '';
             if (iconUrl.startsWith('/')) {
               iconUrl = `https://leetcode.com${iconUrl}`;
