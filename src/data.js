@@ -595,6 +595,6 @@ export const education = [
 ];
 
 export const certifications = [
-  'Knight Title on LeetCode (1869 Peak Rating, Top 5.6% Worldwide)',
+  'Knight Badge on LeetCode (1869 Peak Rating, Top 5.6% Worldwide)',
   'Pupil Rank on Codeforces (1329 Peak Rating, 25+ Rated Rounds)',
 ];

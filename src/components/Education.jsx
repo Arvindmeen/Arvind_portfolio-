@@ -1,5 +1,24 @@
-import { education, certifications } from '../data';
+import { education } from '../data';
 import Reveal from './Reveal';
+
+const certDetails = [
+  {
+    badge: 'Knight Badge',
+    platform: 'LeetCode',
+    rating: '1869 Peak',
+    highlight: 'Top 5.6% Worldwide',
+    logo: '/leetcode.svg',
+    url: 'https://leetcode.com/u/arvind_meena014/',
+  },
+  {
+    badge: 'Pupil Rank',
+    platform: 'Codeforces',
+    rating: '1329 Peak',
+    highlight: '25+ Rated Rounds',
+    logo: '/codeforces.svg',
+    url: 'https://codeforces.com/profile/arvind_meena014',
+  },
+];
 
 export default function Education() {
   return (
@@ -47,22 +66,63 @@ export default function Education() {
           {/* Certifications card */}
           <Reveal delay={300}>
             <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-sm hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-md hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
-              <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-2xl mb-4 shrink-0">
-                🏆
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-2xl shrink-0">
+                  🏆
+                </div>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  Verified
+                </span>
               </div>
+
               <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 text-[0.95rem] mb-1">Certifications</h3>
-              <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400 mb-5">Online Platforms</p>
-              <div className="flex flex-col gap-2 flex-1">
-                {certifications.map((cert, i) => (
-                  <div
+              <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400 mb-4">Online Platforms</p>
+              
+              <div className="flex flex-col gap-2.5 flex-1">
+                {certDetails.map((cert, i) => (
+                  <a
                     key={i}
-                    className="flex items-start gap-2.5 px-3 py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/50"
+                    href={cert.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/cert flex items-center justify-between p-3 rounded-xl border border-zinc-200/90 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-950/60 hover:bg-white dark:hover:bg-zinc-800/80 hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-xs transition-all duration-200"
                   >
-                    <span className="text-zinc-400 mt-0.5 shrink-0">🎯</span>
-                    <span className="font-serif-text text-[0.82rem] text-zinc-600 dark:text-zinc-400 leading-snug">{cert}</span>
-                  </div>
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-8 h-8 rounded-lg bg-white dark:bg-zinc-800 p-1 border border-zinc-200 dark:border-zinc-700 shadow-2xs flex items-center justify-center shrink-0">
+                        <img src={cert.logo} alt={cert.platform} className="w-full h-full object-contain" />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-1.5">
+                          <span className="font-semibold text-zinc-900 dark:text-zinc-100 text-[13px] group-hover/cert:text-blue-600 dark:group-hover/cert:text-blue-400 transition-colors">
+                            {cert.badge}
+                          </span>
+                          <span className="text-[11px] font-mono text-zinc-400 dark:text-zinc-500">
+                            on {cert.platform}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1.5 font-mono text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5">
+                          <span className="font-semibold text-zinc-800 dark:text-zinc-200">{cert.rating}</span>
+                          <span className="text-zinc-300 dark:text-zinc-600">·</span>
+                          <span>{cert.highlight}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="text-zinc-400 group-hover/cert:text-zinc-700 dark:group-hover/cert:text-zinc-200 group-hover/cert:translate-x-0.5 transition-all shrink-0 pl-2">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                      </svg>
+                    </div>
+                  </a>
                 ))}
               </div>
+
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-mono text-[11px] font-semibold bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 self-start mt-4">
+                🏆 2 Verified Credentials
+              </span>
             </div>
           </Reveal>
         </div>

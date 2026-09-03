@@ -110,9 +110,12 @@ export default function Competitions() {
                       <div className="flex items-center gap-2">
                         <h3 className="font-bold text-zinc-900 dark:text-zinc-100 text-lg tracking-tight">LeetCode</h3>
                         <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/25 flex items-center gap-1.5">
-                          <svg className="w-3 h-3 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                          </svg>
+                          <img
+                            src="https://leetcode.com/static/images/badges/knight.png"
+                            alt="Knight Badge"
+                            className="w-3.5 h-3.5 object-contain shrink-0"
+                            loading="lazy"
+                          />
                           {leetcodeData.badge}
                         </span>
                       </div>
@@ -194,25 +197,48 @@ export default function Competitions() {
                     </span>
                   </div>
                   <div className="flex flex-wrap gap-1.5">
-                    {leetcodeData.badgesList.map((b, idx) => (
-                      <span
-                        key={idx}
-                        className="px-2.5 py-1 rounded-md text-[11px] font-mono font-medium bg-zinc-100/90 dark:bg-zinc-800/60 text-zinc-700 dark:text-zinc-300 border border-zinc-200/70 dark:border-zinc-700/60 flex items-center gap-1.5 hover:border-zinc-300 dark:hover:border-zinc-600 transition-colors"
-                        title={b.date}
-                      >
-                        <span className="text-xs">{b.icon}</span> {b.name}
-                      </span>
-                    ))}
+                    {leetcodeData.badgesList.map((b, idx) => {
+                      const iconSrc = (b.icon && (b.icon.startsWith('http') || b.icon.startsWith('/')))
+                        ? (b.icon.startsWith('/') ? `https://leetcode.com${b.icon}` : b.icon)
+                        : (b.name === 'Knight' ? 'https://leetcode.com/static/images/badges/knight.png'
+                          : b.name.includes('100') && b.name.includes('2026') ? 'https://assets.leetcode.com/static_assets/others/100_1080_1080.png'
+                          : b.name.includes('50') && b.name.includes('2026') ? 'https://assets.leetcode.com/static_assets/others/50_1080_1080.png'
+                          : b.name.includes('100') ? 'https://assets.leetcode.com/static_assets/others/lg25100.png'
+                          : b.name.includes('50') ? 'https://assets.leetcode.com/static_assets/others/lg2550.png'
+                          : b.name.includes('Jul') ? 'https://leetcode.com/static/images/badges/dcc-2026-7.png'
+                          : null);
+
+                      return (
+                        <span
+                          key={idx}
+                          className="px-2.5 py-1 rounded-md text-[11px] font-mono font-medium bg-zinc-100/90 dark:bg-zinc-800/60 text-zinc-700 dark:text-zinc-300 border border-zinc-200/70 dark:border-zinc-700/60 flex items-center gap-1.5 hover:border-zinc-300 dark:hover:border-zinc-600 transition-colors"
+                          title={b.date}
+                        >
+                          {iconSrc ? (
+                            <img
+                              src={iconSrc}
+                              alt=""
+                              className="w-3.5 h-3.5 object-contain shrink-0"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <span className="text-xs">{b.icon}</span>
+                          )}
+                          <span>{b.name}</span>
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
 
               <div className="pt-4 border-t border-zinc-200/60 dark:border-zinc-800/60 mt-4 flex items-center justify-between text-xs text-zinc-400 dark:text-zinc-500 font-mono">
-                <span className="text-zinc-700 dark:text-zinc-300 font-medium flex items-center gap-1.5">
-                  <svg className="w-3.5 h-3.5 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12"/>
-                  </svg>
-                  Verified {leetcodeData.badge} Title
+                <span className="text-zinc-700 dark:text-zinc-300 font-medium flex items-center gap-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  </span>
+                  Active {leetcodeData.badge} Badge
                 </span>
                 <span>{leetcodeData.contestsAttended} Rated Contests</span>
               </div>
@@ -307,8 +333,11 @@ export default function Competitions() {
               </div>
 
               <div className="pt-4 border-t border-zinc-200/60 dark:border-zinc-800/60 mt-4 flex items-center justify-between text-xs text-zinc-400 dark:text-zinc-500 font-mono">
-                <span className="text-zinc-700 dark:text-zinc-300 font-medium flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
+                <span className="text-zinc-700 dark:text-zinc-300 font-medium flex items-center gap-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  </span>
                   Active {codeforcesData.rank} Rank
                 </span>
                 <span>{codeforcesData.contestsAttended} Rated Rounds</span>

@@ -1,5 +1,14 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
+export const BADGE_IMAGE_MAP = {
+  'Knight': 'https://leetcode.com/static/images/badges/knight.png',
+  '100 Days Badge 2026': 'https://assets.leetcode.com/static_assets/others/100_1080_1080.png',
+  '50 Days Badge 2026': 'https://assets.leetcode.com/static_assets/others/50_1080_1080.png',
+  '100 Days Badge 2025': 'https://assets.leetcode.com/static_assets/others/lg25100.png',
+  '50 Days Badge 2025': 'https://assets.leetcode.com/static_assets/others/lg2550.png',
+  'Jul LeetCoding Challenge': 'https://leetcode.com/static/images/badges/dcc-2026-7.png',
+};
+
 // Initial fallback snapshot data
 export const INITIAL_LEETCODE = {
   handle: 'arvind_meena014',
@@ -14,11 +23,12 @@ export const INITIAL_LEETCODE = {
   badge: 'Knight',
   badgesCount: 8,
   badgesList: [
-    { name: 'Knight', date: 'Aug 2026', icon: '🛡️' },
-    { name: '100 Days Badge 2026', date: 'Jul 2026', icon: '💯' },
-    { name: '50 Days Badge 2026', date: 'Jun 2026', icon: '🎯' },
-    { name: '100 Days Badge 2025', date: 'Dec 2025', icon: '⭐' },
-    { name: '50 Days Badge 2025', date: 'Jul 2025', icon: '🔥' },
+    { name: 'Knight', date: 'Aug 2026', icon: 'https://leetcode.com/static/images/badges/knight.png' },
+    { name: '100 Days Badge 2026', date: 'Jul 2026', icon: 'https://assets.leetcode.com/static_assets/others/100_1080_1080.png' },
+    { name: '50 Days Badge 2026', date: 'Jun 2026', icon: 'https://assets.leetcode.com/static_assets/others/50_1080_1080.png' },
+    { name: '100 Days Badge 2025', date: 'Dec 2025', icon: 'https://assets.leetcode.com/static_assets/others/lg25100.png' },
+    { name: '50 Days Badge 2025', date: 'Jul 2025', icon: 'https://assets.leetcode.com/static_assets/others/lg2550.png' },
+    { name: 'Jul LeetCoding Challenge', date: 'Jul 2026', icon: 'https://leetcode.com/static/images/badges/dcc-2026-7.png' },
   ],
   history: [
     { title: 'Weekly Contest 454', rating: 1495, rank: 11118, solved: 1, date: 'Jun 2024' },
@@ -71,7 +81,15 @@ export function CompetitionProvider({ children }) {
   const [leetcodeData, setLeetcodeData] = useState(() => {
     try {
       const cached = localStorage.getItem('portfolio_leetcode_data');
-      return cached ? { ...INITIAL_LEETCODE, ...JSON.parse(cached) } : INITIAL_LEETCODE;
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        const badgesList = (parsed.badgesList || []).map(b => ({
+          ...b,
+          icon: BADGE_IMAGE_MAP[b.name] || (b.icon && (b.icon.startsWith('http') || b.icon.startsWith('/')) ? b.icon : BADGE_IMAGE_MAP[b.name]) || b.icon
+        }));
+        return { ...INITIAL_LEETCODE, ...parsed, badgesList: badgesList.length > 0 ? badgesList : INITIAL_LEETCODE.badgesList };
+      }
+      return INITIAL_LEETCODE;
     } catch {
       return INITIAL_LEETCODE;
     }
@@ -232,11 +250,17 @@ export function CompetitionProvider({ children }) {
       if (res.ok) {
         const badges = await res.json();
         if (badges.badges && Array.isArray(badges.badges)) {
-          const list = badges.badges.slice(0, 6).map(b => ({
-            name: b.displayName,
-            date: b.creationDate ? new Date(b.creationDate).toLocaleString('en-US', { month: 'short', year: 'numeric' }) : '',
-            icon: b.displayName.includes('Knight') ? '🛡️' : b.displayName.includes('100') ? '💯' : b.displayName.includes('50') ? '🎯' : '⭐'
-          }));
+          const list = badges.badges.slice(0, 6).map(b => {
+            let iconUrl = b.icon || '';
+            if (iconUrl.startsWith('/')) {
+              iconUrl = `https://leetcode.com${iconUrl}`;
+            }
+            return {
+              name: b.displayName,
+              date: b.creationDate ? new Date(b.creationDate).toLocaleString('en-US', { month: 'short', year: 'numeric' }) : '',
+              icon: iconUrl || BADGE_IMAGE_MAP[b.displayName] || ''
+            };
+          });
           setLeetcodeData(prev => {
             const updated = {
               ...prev,
