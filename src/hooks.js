@@ -15,9 +15,13 @@ export function useTheme() {
     const root = document.documentElement;
     if (dark) {
       root.classList.add('dark');
+      root.style.colorScheme = 'dark';
+      root.style.backgroundColor = '#09090b';
       localStorage.setItem('theme', 'dark');
     } else {
       root.classList.remove('dark');
+      root.style.colorScheme = 'light';
+      root.style.backgroundColor = '#fafafa';
       localStorage.setItem('theme', 'light');
     }
   }, [dark]);

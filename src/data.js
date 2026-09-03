@@ -14,9 +14,9 @@ export const profile = {
   resumeUrl: '#',
   available: true,
   stats: [
-    { value: 2, suffix: '+', label: 'Years Experience' },
-    { value: 410, suffix: '+', label: 'DSA Problems Solved' },
-    { value: 15, suffix: '+', label: 'Projects Built' },
+    { value: 1869, suffix: '', label: 'LeetCode Rating' },
+    { value: 1329, suffix: '', label: 'Codeforces Rating' },
+    { value: 410, suffix: '', label: 'DSA Problems Solved' },
   ],
   roles: [
     'Backend Systems Engineer',

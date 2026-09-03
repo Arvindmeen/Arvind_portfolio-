@@ -20,7 +20,7 @@ function StatItem({ value, suffix, label }) {
 }
 
 export default function Hero() {
-  const { leetcodeData } = useCompetition();
+  const { leetcodeData, codeforcesData } = useCompetition();
   const typed = useTyping(profile.roles);
   const canvasRef = useRef(null);
 
@@ -130,10 +130,22 @@ export default function Hero() {
               */}
             </div>
 
-            <div className="flex gap-8 pt-8 border-t border-zinc-200 dark:border-zinc-800">
+            <div className="flex flex-wrap gap-6 sm:gap-8 pt-8 border-t border-zinc-200 dark:border-zinc-800">
               {profile.stats.map(s => {
-                const isDsa = s.label.toLowerCase().includes('dsa') || s.label.toLowerCase().includes('problem');
-                const dynamicValue = isDsa && leetcodeData?.totalSolved ? leetcodeData.totalSolved : s.value;
+                const labelLower = s.label.toLowerCase();
+                const isDsa = labelLower.includes('dsa') || labelLower.includes('problem');
+                const isLeetcode = labelLower.includes('leetcode');
+                const isCodeforces = labelLower.includes('codeforces');
+
+                let dynamicValue = s.value;
+                if (isDsa && leetcodeData?.totalSolved) {
+                  dynamicValue = leetcodeData.totalSolved;
+                } else if (isLeetcode && leetcodeData?.rating) {
+                  dynamicValue = Math.round(leetcodeData.rating);
+                } else if (isCodeforces && codeforcesData?.rating) {
+                  dynamicValue = Math.round(codeforcesData.rating);
+                }
+
                 return (
                   <StatItem
                     key={`${s.label}-${dynamicValue}`}

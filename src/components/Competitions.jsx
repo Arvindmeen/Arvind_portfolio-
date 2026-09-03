@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef, useCallback } from 'react';
 import { useCompetition } from '../CompetitionContext';
 import Reveal from './Reveal';
 import { ExternalLinkIcon } from '../icons';
@@ -25,8 +25,8 @@ export default function Competitions() {
     const ratings = chartData.map(d => d.rating);
     const rawMin = Math.min(...ratings);
     const rawMax = Math.max(...ratings);
-    const padding = (rawMax - rawMin) * 0.15 || 50;
-    const min = Math.max(0, Math.floor(rawMin - padding));
+    const padding = (rawMax - rawMin) * 0.1 || 50;
+    const min = Math.floor(rawMin - padding);
     const max = Math.ceil(rawMax + padding);
 
     const width = 800;
@@ -59,6 +59,45 @@ export default function Competitions() {
 
     return { points: pts, pathD: pD, areaD: aD, minRating: min, maxRating: max };
   }, [chartData]);
+
+  const svgRef = useRef(null);
+
+  const handleMouseMove = useCallback((e) => {
+    if (!svgRef.current || !points.length) return;
+    const rect = svgRef.current.getBoundingClientRect();
+    if (rect.width === 0) return;
+    const mouseX = Math.max(0, Math.min(800, ((e.clientX - rect.left) / rect.width) * 800));
+
+    let closest = points[0];
+    let minDist = Math.abs(mouseX - points[0].x);
+    for (let i = 1; i < points.length; i++) {
+      const dist = Math.abs(mouseX - points[i].x);
+      if (dist < minDist) {
+        minDist = dist;
+        closest = points[i];
+      }
+    }
+    setHoveredPoint(closest);
+  }, [points]);
+
+  const handleTouchMove = useCallback((e) => {
+    if (!svgRef.current || !points.length || !e.touches?.[0]) return;
+    const touch = e.touches[0];
+    const rect = svgRef.current.getBoundingClientRect();
+    if (rect.width === 0) return;
+    const touchX = Math.max(0, Math.min(800, ((touch.clientX - rect.left) / rect.width) * 800));
+
+    let closest = points[0];
+    let minDist = Math.abs(touchX - points[0].x);
+    for (let i = 1; i < points.length; i++) {
+      const dist = Math.abs(touchX - points[i].x);
+      if (dist < minDist) {
+        minDist = dist;
+        closest = points[i];
+      }
+    }
+    setHoveredPoint(closest);
+  }, [points]);
 
   return (
     <section id="competitions" className="py-14 md:py-16">
@@ -360,11 +399,19 @@ export default function Competitions() {
             {/* Chart Header + Tabs */}
             <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
               <div>
-                <h3 className="font-serif text-xl font-semibold text-zinc-900 dark:text-zinc-100">
-                  Rating Progression History
-                </h3>
+                <div className="flex items-center gap-2.5 flex-wrap mb-1">
+                  <h3 className="font-serif text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+                    Rating Progression History
+                  </h3>
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 border border-zinc-200/80 dark:border-zinc-700/80">
+                    <span className={`w-1.5 h-1.5 rounded-full ${activeTab === 'leetcode' ? 'bg-amber-500' : 'bg-emerald-500'}`} />
+                    {activeTab === 'leetcode'
+                      ? `${leetcodeData.contestsAttended} Contests Attended`
+                      : `${codeforcesData.contestsAttended} Rounds Attended`}
+                  </span>
+                </div>
                 <p className="font-serif-text text-xs text-zinc-500 dark:text-zinc-400">
-                  Hover over data points to inspect contest name, exact rating, rank &amp; solve counts
+                  Hover over data points to inspect contest name, exact rating, and rank
                 </p>
               </div>
 
@@ -396,10 +443,17 @@ export default function Competitions() {
             </div>
 
             {/* Interactive SVG Graph */}
-            <div className="relative w-full overflow-hidden">
+            <div
+              className="relative w-full"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={() => setHoveredPoint(null)}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={() => setHoveredPoint(null)}
+            >
               <svg
+                ref={svgRef}
                 viewBox="0 0 800 260"
-                className="w-full h-auto overflow-visible select-none"
+                className="w-full h-auto overflow-visible select-none cursor-crosshair"
               >
                 <defs>
                   {/* LeetCode Gradient */}
@@ -475,8 +529,17 @@ export default function Competitions() {
                           r="10"
                           fill={color}
                           opacity="0.25"
+                          className="transition-all duration-200"
                         />
                       )}
+                      {/* Invisible larger hit area for seamless hovering */}
+                      <circle
+                        cx={pt.x}
+                        cy={pt.y}
+                        r="14"
+                        fill="transparent"
+                        onMouseEnter={() => setHoveredPoint(pt)}
+                      />
                       {/* Main point */}
                       <circle
                         cx={pt.x}
@@ -485,7 +548,7 @@ export default function Competitions() {
                         fill={color}
                         stroke="#fff"
                         strokeWidth="1.5"
-                        className="transition-all duration-150"
+                        className="transition-all duration-200"
                         onMouseEnter={() => setHoveredPoint(pt)}
                       />
                     </g>
@@ -494,56 +557,67 @@ export default function Competitions() {
               </svg>
 
               {/* Tooltip Card */}
-              {hoveredPoint && (
-                <div
-                  className="absolute z-30 pointer-events-none transform -translate-x-1/2 -translate-y-full -mt-3 px-3.5 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white/95 dark:bg-zinc-950/95 shadow-xl text-xs backdrop-blur-md min-w-[190px]"
-                  style={{
-                    left: `${(hoveredPoint.x / 800) * 100}%`,
-                    top: `${(hoveredPoint.y / 260) * 100}%`
-                  }}
-                >
-                  <div className="font-semibold text-zinc-900 dark:text-zinc-100 text-[11px] mb-1 truncate">
-                    {hoveredPoint.data.title}
-                  </div>
-                  <div className="flex items-center justify-between font-mono text-[11px] mb-0.5">
-                    <span className="text-zinc-400">Rating:</span>
-                    <strong className={activeTab === 'leetcode' ? 'text-amber-500' : 'text-emerald-500'}>
-                      {hoveredPoint.data.rating}
-                    </strong>
-                  </div>
-                  <div className="flex items-center justify-between font-mono text-[11px] mb-0.5">
-                    <span className="text-zinc-400">Rank:</span>
-                    <span className="text-zinc-700 dark:text-zinc-300">#{hoveredPoint.data.rank}</span>
-                  </div>
-                  {hoveredPoint.data.solved !== undefined && (
-                    <div className="flex items-center justify-between font-mono text-[11px] mb-0.5">
-                      <span className="text-zinc-400">Solved:</span>
-                      <span className="text-zinc-700 dark:text-zinc-300">{hoveredPoint.data.solved}/4</span>
+              {hoveredPoint && (() => {
+                const isNearTop = hoveredPoint.y < 125;
+                const xRatio = hoveredPoint.x / 800;
+                const xTransform = xRatio > 0.8 ? '-translate-x-[85%]' : xRatio < 0.2 ? '-translate-x-[15%]' : '-translate-x-1/2';
+                const yTransform = isNearTop ? 'translate-y-3.5' : '-translate-y-full -mt-3';
+
+                return (
+                  <div
+                    className={`absolute z-50 pointer-events-none transform ${xTransform} ${yTransform} px-3.5 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white/95 dark:bg-zinc-950/95 shadow-xl text-xs backdrop-blur-md min-w-[190px] transition-all duration-200 ease-out`}
+                    style={{
+                      left: `${(hoveredPoint.x / 800) * 100}%`,
+                      top: `${(hoveredPoint.y / 260) * 100}%`
+                    }}
+                  >
+                    <div className="font-semibold text-zinc-900 dark:text-zinc-100 text-[11px] mb-1 truncate">
+                      {hoveredPoint.data.title}
                     </div>
-                  )}
-                  <div className="text-[10px] text-zinc-400 dark:text-zinc-500 pt-1 border-t border-zinc-100 dark:border-zinc-800 mt-1 font-mono flex items-center gap-1">
-                    <svg className="w-3 h-3 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                      <line x1="16" y1="2" x2="16" y2="6"/>
-                      <line x1="8" y1="2" x2="8" y2="6"/>
-                      <line x1="3" y1="10" x2="21" y2="10"/>
-                    </svg>
-                    {hoveredPoint.data.date}
+                    <div className="flex items-center justify-between font-mono text-[11px] mb-0.5">
+                      <span className="text-zinc-400">Rating:</span>
+                      <strong className={activeTab === 'leetcode' ? 'text-amber-500' : 'text-emerald-500'}>
+                        {hoveredPoint.data.rating}
+                      </strong>
+                    </div>
+                    <div className="flex items-center justify-between font-mono text-[11px] mb-0.5">
+                      <span className="text-zinc-400">Rank:</span>
+                      <span className="text-zinc-700 dark:text-zinc-300">#{hoveredPoint.data.rank}</span>
+                    </div>
+                    <div className="text-[10px] text-zinc-400 dark:text-zinc-500 pt-1 border-t border-zinc-100 dark:border-zinc-800 mt-1 font-mono flex items-center gap-1">
+                      <svg className="w-3 h-3 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                      </svg>
+                      {hoveredPoint.data.date}
+                    </div>
                   </div>
-                </div>
-              )}
+                );
+              })()}
             </div>
 
             {/* Bottom Timeline Legend */}
-            <div className="flex justify-between items-center pt-3 border-t border-zinc-100 dark:border-zinc-800 text-[11px] font-mono text-zinc-400">
+            <div className="flex flex-wrap justify-between items-center gap-2 pt-3 border-t border-zinc-100 dark:border-zinc-800 text-[11px] font-mono text-zinc-400">
               <span>{points[0]?.data.date || 'Earlier'}</span>
-              <span className="text-zinc-700 dark:text-zinc-300 font-medium flex items-center gap-1.5">
-                <svg className="w-3.5 h-3.5 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-                  <polyline points="17 6 23 6 23 12"/>
-                </svg>
-                {activeTab === 'leetcode' ? `Peak: ${leetcodeData.rating} (${leetcodeData.badge})` : `Peak: ${codeforcesData.maxRating} (${codeforcesData.rank})`}
-              </span>
+              <div className="flex items-center gap-3">
+                <span className="text-zinc-700 dark:text-zinc-300 font-medium flex items-center gap-1.5">
+                  <svg className="w-3.5 h-3.5 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                    <polyline points="17 6 23 6 23 12"/>
+                  </svg>
+                  {activeTab === 'leetcode' ? `Peak: ${leetcodeData.rating} (${leetcodeData.badge})` : `Peak: ${codeforcesData.maxRating} (${codeforcesData.rank})`}
+                </span>
+                <span className="text-zinc-300 dark:text-zinc-700">•</span>
+                <span className="text-zinc-700 dark:text-zinc-300 font-medium flex items-center gap-1.5">
+                  <svg className="w-3.5 h-3.5 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                  {activeTab === 'leetcode' ? `${leetcodeData.contestsAttended} Rated Contests` : `${codeforcesData.contestsAttended} Rated Rounds`}
+                </span>
+              </div>
               <span>{points[points.length - 1]?.data.date || 'Latest'}</span>
             </div>
 

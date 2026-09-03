@@ -1,19 +1,44 @@
 <!doctype html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="dark scroll-smooth" style="background-color: #09090b; color-scheme: dark;">
   <head>
     <meta charset="UTF-8" />
+    <meta name="color-scheme" content="dark light" />
+    <style>
+      :root {
+        color-scheme: dark;
+        background-color: #09090b;
+        color: #e4e4e7;
+      }
+      :root:not(.dark) {
+        color-scheme: light;
+        background-color: #fafafa;
+        color: #18181b;
+      }
+      html, body {
+        background-color: inherit;
+        color: inherit;
+        margin: 0;
+      }
+    </style>
     <script>
       // Apply theme before paint to prevent FOUC (Default: Dark)
       (function () {
         try {
           var t = localStorage.getItem('theme');
-          if (t === 'light') {
+          var isLight = t === 'light';
+          if (isLight) {
             document.documentElement.classList.remove('dark');
+            document.documentElement.style.colorScheme = 'light';
+            document.documentElement.style.backgroundColor = '#fafafa';
           } else {
             document.documentElement.classList.add('dark');
+            document.documentElement.style.colorScheme = 'dark';
+            document.documentElement.style.backgroundColor = '#09090b';
           }
         } catch (e) {
           document.documentElement.classList.add('dark');
+          document.documentElement.style.colorScheme = 'dark';
+          document.documentElement.style.backgroundColor = '#09090b';
         }
       })();
     </script>
@@ -132,7 +157,7 @@
     }
     </script>
   </head>
-  <body class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-200 antialiased transition-colors duration-300">
+  <body class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-200 antialiased">
     <noscript>
       <div style="padding: 24px; font-family: sans-serif;">
         <h1>Arvind Meena - Full Stack Developer &amp; Backend Engineer</h1>
