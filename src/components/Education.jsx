@@ -1,5 +1,13 @@
 import { education } from '../data';
 import Reveal from './Reveal';
+import { LuTrophy, LuGraduationCap, LuAward, LuAtom, LuSparkles, LuBookOpen } from 'react-icons/lu';
+
+const BADGE_ICONS = {
+  degree: <LuGraduationCap size={13} className="text-blue-500 shrink-0" />,
+  jee: <LuAward size={13} className="text-amber-500 shrink-0" />,
+  science: <LuAtom size={13} className="text-indigo-500 shrink-0" />,
+  scholar: <LuSparkles size={13} className="text-emerald-500 shrink-0" />,
+};
 
 const certDetails = [
   {
@@ -47,7 +55,7 @@ export default function Education() {
                       loading="lazy"
                     />
                   ) : (
-                    <span className="text-2xl">{edu.emoji}</span>
+                    <LuBookOpen className="w-6 h-6 text-zinc-400" />
                   )}
                 </div>
                 <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 text-[0.95rem] mb-1">{edu.degree}</h3>
@@ -57,6 +65,7 @@ export default function Education() {
                   {edu.desc}
                 </p>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-mono text-[11px] font-semibold bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 self-start">
+                  {BADGE_ICONS[edu.iconKey] || <LuGraduationCap size={13} className="text-zinc-400 shrink-0" />}
                   {edu.badge || edu.grade}
                 </span>
               </div>
@@ -67,8 +76,8 @@ export default function Education() {
           <Reveal delay={300}>
             <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-sm hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-md hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
               <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-2xl shrink-0">
-                  🏆
+                <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0">
+                  <LuTrophy className="w-6 h-6 text-amber-500" />
                 </div>
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -121,7 +130,7 @@ export default function Education() {
               </div>
 
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-mono text-[11px] font-semibold bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 self-start mt-4">
-                🏆 2 Verified Credentials
+                <LuTrophy className="w-3.5 h-3.5 text-amber-500" /> 2 Verified Credentials
               </span>
             </div>
           </Reveal>

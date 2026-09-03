@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { skills, skillCategories } from '../data';
 import Reveal from './Reveal';
+import { LuCode, LuZap } from 'react-icons/lu';
 
 export default function Skills() {
   const [active, setActive] = useState('all');
@@ -79,7 +80,7 @@ export default function Skills() {
                       />
                     ) : (
                       <div className="w-10 h-10 rounded-lg bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-xl group-hover:scale-110 transition-transform duration-200">
-                        {skill.emoji}
+                        <LuCode size={20} className="text-zinc-600 dark:text-zinc-400" />
                       </div>
                     )}
                   </div>
@@ -116,7 +117,7 @@ export default function Skills() {
                       {/* Highlight Pill */}
                       {skill.highlight && (
                         <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 dark:text-emerald-400 text-[10.5px] font-mono font-semibold">
-                          <span>⚡</span> {skill.highlight}
+                          <LuZap size={11} className="text-emerald-500 shrink-0" /> {skill.highlight}
                         </div>
                       )}
 

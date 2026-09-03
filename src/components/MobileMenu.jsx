@@ -37,7 +37,7 @@ export default function MobileMenu({ open, onClose, dark, toggleTheme }) {
   if (!open) return null;
 
   return (
-    /* Dimmed backdrop covering full screen — clicking anywhere outside the menu card closes it */
+    /* Dimmed backdrop covering full screen - clicking anywhere outside the menu card closes it */
     <div
       onClick={onClose}
       className="fixed inset-0 z-[2000] flex items-start justify-end p-2.5 sm:p-4 bg-black/60 dark:bg-black/75 backdrop-blur-sm transition-opacity duration-200 cursor-pointer"
@@ -47,7 +47,7 @@ export default function MobileMenu({ open, onClose, dark, toggleTheme }) {
       <div className="fixed top-1/4 right-0 w-64 h-64 rounded-full bg-emerald-500/10 dark:bg-emerald-500/15 blur-3xl pointer-events-none" />
       <div className="fixed bottom-1/4 right-8 w-60 h-60 rounded-full bg-indigo-500/10 dark:bg-indigo-500/15 blur-3xl pointer-events-none" />
 
-      {/* Floating Menu Card — strictly hugs content height without stretching */}
+      {/* Floating Menu Card - strictly hugs content height without stretching */}
       <div
         onClick={(e) => e.stopPropagation()}
         className="relative self-start w-[82%] max-w-[315px] h-auto max-h-[calc(100dvh-24px)] bg-white/95 dark:bg-zinc-950/95 backdrop-blur-2xl rounded-3xl border border-zinc-200/80 dark:border-zinc-800/80 shadow-[0_12px_48px_rgba(0,0,0,0.5)] flex flex-col overflow-y-auto z-10 animate-slide-right cursor-default"
@@ -94,7 +94,7 @@ export default function MobileMenu({ open, onClose, dark, toggleTheme }) {
           </div>
         </div>
 
-        {/* Clean Navigation Links — tight and snug */}
+        {/* Clean Navigation Links - tight and snug */}
         <div className="px-3.5 py-3 flex flex-col gap-0.5">
           <p className="font-mono text-[9.5px] font-bold tracking-[0.2em] uppercase text-zinc-400 dark:text-zinc-500 px-3 mb-1">
             Menu
@@ -125,7 +125,7 @@ export default function MobileMenu({ open, onClose, dark, toggleTheme }) {
           ))}
         </div>
 
-        {/* Bottom CTA Card & Profiles — shifted directly below Contact */}
+        {/* Bottom CTA Card & Profiles - shifted directly below Contact */}
         <div className="p-3.5 border-t border-zinc-100 dark:border-zinc-900 bg-zinc-50/50 dark:bg-zinc-950/50 flex flex-col gap-2.5">
           {/* Quick Contact CTA */}
           <a

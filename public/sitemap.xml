@@ -1,9 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://arvindmeena.vercel.app/</loc>
     <lastmod>2026-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://arvindmeena.vercel.app/avatar.jpg</image:loc>
+      <image:title>Arvind Meena - Full Stack Developer &amp; Backend Engineer</image:title>
+      <image:caption>Official portrait photo of Arvind Meena, Full Stack Developer and Backend Systems Engineer from IIT Kharagpur.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://arvindmeena.vercel.app/favicon.png</image:loc>
+      <image:title>Arvind Meena Portfolio Emblem</image:title>
+      <image:caption>Official portfolio badge and icon of Arvind Meena.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://arvindmeena.vercel.app/iitkgp.png</image:loc>
+      <image:title>Indian Institute of Technology Kharagpur - Arvind Meena</image:title>
+      <image:caption>IIT Kharagpur education and credentials for Arvind Meena.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://arvindmeena.vercel.app/dakshana.png</image:loc>
+      <image:title>Dakshana Foundation Scholar - Arvind Meena</image:title>
+      <image:caption>Dakshana Foundation scholar program credential for Arvind Meena.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://arvindmeena.vercel.app/jnv.png</image:loc>
+      <image:title>Jawahar Navodaya Vidyalaya - Arvind Meena</image:title>
+      <image:caption>Jawahar Navodaya Vidyalaya (JNV) high school education credential for Arvind Meena.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://arvindmeena.vercel.app/leetcode.png</image:loc>
+      <image:title>Arvind Meena LeetCode Knight Credentials</image:title>
+      <image:caption>LeetCode Knight badge and competitive programming credentials for Arvind Meena.</image:caption>
+    </image:image>
   </url>
 </urlset>

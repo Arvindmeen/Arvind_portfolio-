@@ -1,4 +1,4 @@
-// ── All site data — curated from real resume & verified profiles ──
+// ── All site data - curated from real resume & verified profiles ──
 
 export const profile = {
   name: 'Arvind Meena',
@@ -26,7 +26,7 @@ export const profile = {
     'System Design Enthusiast',
   ],
   bio: [
-    `Hey! I'm Arvind Meena, a Bioscience and Biotechnology student at IIT Kharagpur who fell in love with backend engineering — now building high-throughput distributed systems, event-driven architectures, and production-grade REST APIs.`,
+    `Hey! I'm Arvind Meena, a Bioscience and Biotechnology student at IIT Kharagpur who fell in love with backend engineering - now building high-throughput distributed systems, event-driven architectures, and production-grade REST APIs.`,
     `My work spans architecting a 7-microservice train booking platform with Kafka-driven event pipelines, Saga-pattern fault tolerance, and a 96% latency cut via Redis caching down to building a real-time geospatial surge-pricing engine with Apache Flink and H3 indexing that processes 10,000+ location events per second.`,
     `I've shipped a scalable e-commerce REST API with JWT auth and RBAC as a Software Developer Intern at Atlys Workforce Technologies, containerized full microservice ecosystems with Docker, and solved 410+ problems across LeetCode (Knight Badge, Top 5%) and Codeforces.`,
   ],
@@ -37,7 +37,6 @@ export const skills = [
   {
     name: 'DSA',
     icon: '/skills/dsa.svg',
-    emoji: '🧠',
     cat: 'core-cs',
     project: 'Competitive Programming & Algorithms',
     summary: '410+ problems solved across LeetCode (Knight rank, 1869 peak) and Codeforces (Pupil 1329 peak).',
@@ -46,7 +45,6 @@ export const skills = [
   {
     name: 'System Design',
     icon: '/skills/system-design.svg',
-    emoji: '📐',
     cat: 'core-cs',
     project: 'Book My Train & RideTrack',
     summary: 'Architected 7 microservices with database-per-service, API Gateway, event streaming & circuit breakers.',
@@ -55,7 +53,6 @@ export const skills = [
   {
     name: 'OOP',
     icon: '/skills/oop.svg',
-    emoji: '🧩',
     cat: 'core-cs',
     project: "Rubik's Cube Solver",
     summary: 'Developed modular 3x3 Rubik’s cube models using pure-virtual functions, inheritance & operator overloading.',
@@ -114,7 +111,6 @@ export const skills = [
   {
     name: 'REST API',
     icon: '/skills/rest-api.svg',
-    emoji: '🔗',
     cat: 'backend',
     project: 'Atlys Workforce Technologies',
     summary: 'Designed e-commerce order management and cart systems across 15+ REST endpoints documented via Postman.',
@@ -123,7 +119,6 @@ export const skills = [
   {
     name: 'GraphQL',
     icon: '/skills/graphql.svg',
-    emoji: '◈',
     cat: 'backend',
     project: 'API Architecture & Query Layer',
     summary: 'Declarative data fetching with strongly typed schemas, custom resolvers, mutations & eliminating over-fetching.',
@@ -132,7 +127,6 @@ export const skills = [
   {
     name: 'API Gateway',
     icon: '/skills/api-gateway.svg',
-    emoji: '🚪',
     cat: 'backend',
     project: 'Book My Train',
     summary: 'Centralized entry point eliminating direct client calls, enforcing rate limiting, JWT auth & circuit breakers.',
@@ -141,7 +135,6 @@ export const skills = [
   {
     name: 'WebSockets',
     icon: '/skills/websockets.svg',
-    emoji: '⚡',
     cat: 'backend',
     project: 'RideTrack Platform',
     summary: 'Real-time bidirectional event streaming pipeline handling 10,000+ concurrent live location events per second.',
@@ -150,7 +143,6 @@ export const skills = [
   {
     name: 'JWT',
     icon: '/skills/jwt.svg',
-    emoji: '🔐',
     cat: 'backend',
     project: 'Atlys & Book My Train',
     summary: 'Designed secure auth with access tokens, refresh token rotation, OTP verification & Google OAuth.',
@@ -159,7 +151,6 @@ export const skills = [
   {
     name: 'RBAC',
     icon: '/skills/rbac.svg',
-    emoji: '🛡️',
     cat: 'backend',
     project: 'Atlys Workforce Technologies',
     summary: 'Implemented fine-grained role-based access control protecting administrative, customer & inventory routes.',
@@ -170,7 +161,6 @@ export const skills = [
   {
     name: 'Microservices',
     icon: '/skills/microservices.svg',
-    emoji: '🏗️',
     cat: 'dist-sys',
     project: 'Book My Train',
     summary: 'Architected 7 independently deployable services (Auth, Train, Booking, Payment, Search, Notification).',
@@ -204,7 +194,6 @@ export const skills = [
   {
     name: 'Rate Limiting',
     icon: '/skills/ratelimiting.svg',
-    emoji: '⏱️',
     cat: 'dist-sys',
     project: 'RideTrack & Book My Train',
     summary: 'Token bucket and sliding window rate limiting in API Gateway protecting downstream microservices.',
@@ -213,7 +202,6 @@ export const skills = [
   {
     name: 'Idempotency',
     icon: '/skills/idempotency.svg',
-    emoji: '🔁',
     cat: 'dist-sys',
     project: 'Book My Train',
     summary: 'Built idempotent payment & booking APIs with unique idempotency keys preventing double charge/booking.',
@@ -222,7 +210,6 @@ export const skills = [
   {
     name: 'Saga Pattern',
     icon: '/skills/saga.svg',
-    emoji: '🔄',
     cat: 'dist-sys',
     project: 'Book My Train',
     summary: 'Engineered fault-tolerant distributed transactions across booking, seat allocation & payment with rollback compensations.',
@@ -231,7 +218,6 @@ export const skills = [
   {
     name: 'Dist. Txns',
     icon: '/skills/dist-txns.svg',
-    emoji: '⚙️',
     cat: 'dist-sys',
     project: 'Book My Train',
     summary: 'Optimistic concurrency control with distributed locks in Redis for real-time seat inventory reservation.',
@@ -240,7 +226,6 @@ export const skills = [
   {
     name: 'H3 Indexing',
     icon: '/skills/h3.svg',
-    emoji: '🌐',
     cat: 'dist-sys',
     project: 'RideTrack Platform',
     summary: 'Uber H3 hexagonal spatial indexing for real-time driver density calculation and dynamic surge pricing.',
@@ -249,7 +234,6 @@ export const skills = [
   {
     name: 'Apache Flink',
     icon: '/skills/flink.svg',
-    emoji: '🌊',
     cat: 'dist-sys',
     project: 'RideTrack Platform',
     summary: 'Dynamic real-time surge pricing engine using sliding window stream aggregation across geospatial events.',
@@ -284,7 +268,6 @@ export const skills = [
   {
     name: 'Redis Geo',
     icon: '/skills/redis-geo.svg',
-    emoji: '🗺️',
     cat: 'database',
     project: 'RideTrack Platform',
     summary: 'Eliminated high-frequency DB writes using geospatial radius queries, reducing location latency by 70%.',
@@ -426,7 +409,6 @@ export const skills = [
   {
     name: 'Railway',
     icon: '/skills/railway.svg',
-    emoji: '🚂',
     cat: 'tools',
     project: 'Backend Hosting',
     summary: 'Hosted Node.js services, Redis instances, and PostgreSQL databases with automated build pipelines.',
@@ -435,7 +417,6 @@ export const skills = [
   {
     name: 'Render',
     icon: '/skills/render.svg',
-    emoji: '☁️',
     cat: 'tools',
     project: 'Web Services',
     summary: 'Deployed web services, background workers, and managed PostgreSQL databases with SSL out-of-the-box.',
@@ -500,21 +481,21 @@ export const experience = [
   {
     role: 'Software Developer Intern',
     company: 'Atlys Workforce Technologies',
-    period: "May'25 – Jun'25",
+    period: "May'25 - Jun'25",
     desc: 'Developed a scalable E-Commerce REST API using Node.js, Express.js, and MongoDB with JWT authentication and bcrypt password hashing. Built product management system with CRUD operations, category filtering, pagination, and role-based access control (RBAC). Designed order management and cart system with inventory tracking across 15+ REST API endpoints documented via Postman.',
     tags: ['Node.js', 'Express.js', 'MongoDB', 'JWT', 'RBAC', 'REST API', 'Postman'],
   },
   {
     role: 'Competitive Programmer & Problem Solver',
     company: 'LeetCode & Codeforces',
-    period: '2024 – Present',
+    period: '2024 - Present',
     desc: 'Solved 410+ algorithmic problems focusing on Dynamic Programming, Graph Theory, Trees, and Bit Manipulation. Knight on LeetCode (Top 5.6% Worldwide, 1869 peak rating) and Pupil on Codeforces (1329 peak rating) across 40+ rated global rounds.',
     tags: ['C++', 'DSA', 'Algorithms', 'Graph Theory', 'Dynamic Programming', 'Competitive Programming'],
   },
   {
     role: 'Open Source & Core Contributor',
     company: 'GitHub Projects',
-    period: '2023 – Present',
+    period: '2023 - Present',
     desc: 'Actively architected and open-sourced distributed systems projects including microservices platforms with Kafka, real-time spatial intelligence engines with Apache Flink & Redis Geospatial, and C++ IDA* solvers.',
     tags: ['Distributed Systems', 'Apache Kafka', 'Redis', 'Docker', 'Open Source'],
   },
@@ -525,7 +506,7 @@ export const projects = [
     title: 'Book My Train | Microservices Architecture',
     desc: 'Architected a scalable platform using 7 microservices and database-per-service architecture. Centralized API Gateway with rate limiting, circuit breakers & JWT auth. Event-driven Kafka pipeline with Dead Letter Queues, Saga pattern distributed seat locking, idempotent APIs, and Redis caching slashing latency by 96% (500ms to 20ms). Containerized with Docker Compose.',
     tags: ['Node.js', 'Express.js', 'Apache Kafka', 'PostgreSQL', 'Redis', 'Docker', 'Microservices', 'Saga Pattern'],
-    emoji: '🚂',
+    iconKey: 'train',
     gradient: 'from-indigo-600 to-violet-700',
     demo: '#',
     repo: 'https://github.com/Arvindmeen',
@@ -534,7 +515,7 @@ export const projects = [
     title: 'RideTrack | Distributed Real-Time Mobility Intelligence',
     desc: 'Eliminated high-frequency DB writes using Redis Geospatial & in-memory caching, reducing location latency by 70%. Event streaming pipeline using WebSockets & Kafka handling 10,000+ concurrent location events/sec. Built dynamic surge pricing engine using Apache Flink sliding window aggregation and Uber H3 spatial indexing.',
     tags: ['WebSockets', 'Apache Kafka', 'Apache Flink', 'Redis', 'H3 Indexing', 'Distributed Systems'],
-    emoji: '🏍️',
+    iconKey: 'mobility',
     gradient: 'from-blue-600 to-cyan-600',
     demo: '#',
     repo: 'https://github.com/Arvindmeen',
@@ -543,7 +524,7 @@ export const projects = [
     title: "Rubik's Cube Solver using Korf's IDA* Algorithm",
     desc: "Developed a virtual 3x3 Rubik's Cube in three C++ models using OOP principles and bit-level state encoding. Custom move generator achieving 3s solve time for 8-move scrambles with BFS/IDDFS and 10s for 13-move scrambles with Korf's IDA* algorithm using move pruning and transposition tables.",
     tags: ['C++', 'Algorithms & DSA', 'OOP', 'STL', 'Graph Search', 'Bit Manipulation'],
-    emoji: '🎲',
+    iconKey: 'cube',
     gradient: 'from-emerald-600 to-teal-700',
     demo: '#',
     repo: 'https://github.com/Arvindmeen',
@@ -552,7 +533,7 @@ export const projects = [
     title: 'Fashion-hub | Scalable E-Commerce',
     desc: 'Engineered a robust REST API backend with Node.js, Express.js, and MongoDB. Secure JWT auth, refresh token rotation, bcrypt password hashing, and role-based access control (RBAC). Complete order tracking and inventory management across 15+ endpoints.',
     tags: ['Node.js', 'Express.js', 'MongoDB', 'JWT', 'RBAC', 'Postman'],
-    emoji: '🛒',
+    iconKey: 'ecommerce',
     gradient: 'from-amber-600 to-orange-700',
     demo: '#',
     repo: 'https://github.com/Arvindmeen',
@@ -563,32 +544,36 @@ export const education = [
   {
     degree: 'B.Tech + M.Tech (Dual Degree) | Bioscience and Biotechnology',
     institution: 'Indian Institute of Technology Kharagpur',
-    period: '2023 – 2028',
-    badge: '🎓 Dual Degree (B.Tech + M.Tech)',
+    period: '2023 - 2028',
+    badge: 'Dual Degree (B.Tech + M.Tech)',
+    iconKey: 'degree',
     logo: '/iitkgp.png',
-    desc: 'Pursuing a Dual Degree in Bioscience and Biotechnology, while building strong expertise in Computer Science — Data Structures, Algorithms, Operating Systems, DBMS, and Distributed System Design.',
+    desc: 'Pursuing a Dual Degree in Bioscience and Biotechnology, while building strong expertise in Computer Science - Data Structures, Algorithms, Operating Systems, DBMS, and Distributed System Design.',
   },
   {
     degree: 'Dakshana Scholar | JEE Advanced Preparation',
     institution: 'The Dakshana Foundation, Pune',
-    period: '2022 – 2023',
-    badge: '🏆 JEE Advanced 2023 Qualified',
+    period: '2022 - 2023',
+    badge: 'JEE Advanced 2023 Qualified',
+    iconKey: 'jee',
     logo: '/dakshana.png',
     desc: 'Selected through the national Joint Dakshana Selection Test (JDST) for an intensive 1-year fully-funded residential fellowship for JEE Advanced 2023, securing admission into IIT Kharagpur.',
   },
   {
     degree: 'Higher Secondary (12th)',
     institution: 'Jawahar Navodaya Vidyalaya, Moradabad',
-    period: '2020 – 2022',
-    badge: '🔬 PCM Stream · CBSE',
+    period: '2020 - 2022',
+    badge: 'PCM Stream · CBSE',
+    iconKey: 'science',
     logo: '/jnv.png',
     desc: 'Specialized in Physics, Chemistry, and Mathematics (PCM) under CBSE. Developed strong foundational analytical thinking, calculus, and mathematical problem-solving skills.',
   },
   {
     degree: 'Secondary (10th)',
     institution: 'Jawahar Navodaya Vidyalaya, Moradabad',
-    period: '2015 – 2020',
-    badge: '🌟 Merit Selected JNV Scholar',
+    period: '2015 - 2020',
+    badge: 'Merit Selected JNV Scholar',
+    iconKey: 'scholar',
     logo: '/jnv.png',
     desc: 'Completed secondary education with distinction under CBSE. Earned admission into Jawahar Navodaya Vidyalaya through the competitive district-level merit exam.',
   },

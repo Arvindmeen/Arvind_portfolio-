@@ -2,7 +2,8 @@ import { useEffect, useRef } from 'react';
 import { useTyping, useInView, useCounter } from '../hooks';
 import { useCompetition } from '../CompetitionContext';
 import { profile } from '../data';
-import { DownloadIcon, ArrowRightIcon } from '../icons';
+import { ArrowRightIcon } from '../icons';
+import { LuRocket, LuZap, LuLayers } from 'react-icons/lu';
 
 function StatItem({ value, suffix, label }) {
   const [ref, inView] = useInView(0.5);
@@ -94,10 +95,9 @@ export default function Hero() {
 
           <div className="animate-fade-in">
             {profile.available && (
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-700 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-dot" />
-                <span className="font-mono text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 tracking-widest uppercase">
-                  Available for Opportunities
+              <div className="mb-4">
+                <span className="font-mono text-xs font-semibold tracking-widest uppercase animate-shimmer-green select-none">
+                  Available to Opportunity
                 </span>
               </div>
             )}
@@ -121,7 +121,7 @@ export default function Hero() {
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-900 text-sm font-semibold hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-all duration-200 hover:-translate-y-0.5">
                 View Projects <ArrowRightIcon size={14} />
               </a>
-              {/* Resume download button — Uncomment when resume is fully prepared & uploaded */}
+              {/* Resume download button - Uncomment when resume is fully prepared & uploaded */}
               {/*
               <a href={profile.resumeUrl}
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 text-sm font-semibold hover:border-zinc-400 dark:hover:border-zinc-500 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all duration-200 hover:-translate-y-0.5">
@@ -169,15 +169,15 @@ export default function Hero() {
 
               {/* Floating badges */}
               <div className="absolute top-2 -left-8 z-20 animate-float-delay px-3 py-2 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 shadow-md text-xs font-semibold text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 backdrop-blur-sm">
-                <span>🚀</span> Full Stack Dev
+                <LuRocket size={14} className="text-blue-500 shrink-0" /> Full Stack Dev
               </div>
 
               <div className="absolute top-2 -right-8 z-20 animate-float px-3 py-2 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 shadow-md text-xs font-semibold text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 backdrop-blur-sm">
-                <span>⚡</span> DSA &amp; CP
+                <LuZap size={14} className="text-amber-500 shrink-0" /> DSA &amp; CP
               </div>
 
               <div className="absolute bottom-2 -left-7 z-20 animate-float px-3 py-2 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 shadow-md text-xs font-semibold text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 backdrop-blur-sm">
-                <span>📐</span> System Design
+                <LuLayers size={14} className="text-emerald-500 shrink-0" /> System Design
               </div>
 
               <div className="absolute bottom-2 -right-6 z-20 animate-float-delay flex items-center gap-2 px-3 py-2 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 shadow-md text-xs font-semibold text-zinc-700 dark:text-zinc-300 backdrop-blur-sm">

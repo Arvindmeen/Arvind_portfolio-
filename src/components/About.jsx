@@ -1,6 +1,6 @@
 import { profile } from '../data';
 import Reveal from './Reveal';
-import { MapPinIcon, GraduationCapIcon, BriefcaseIcon, GlobeIcon, DownloadIcon, ArrowRightIcon } from '../icons';
+import { MapPinIcon, GraduationCapIcon, BriefcaseIcon, GlobeIcon, ArrowRightIcon } from '../icons';
 
 const tags = [
   { icon: <MapPinIcon size={14} />,        label: 'Location',  value: profile.location },
@@ -72,7 +72,7 @@ export default function About() {
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-900 text-sm font-semibold hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-all duration-200 hover:-translate-y-0.5">
                   Let&apos;s Talk <ArrowRightIcon size={14} />
                 </a>
-                {/* Resume download button — Uncomment when resume is fully prepared & uploaded */}
+                {/* Resume download button - Uncomment when resume is fully prepared & uploaded */}
                 {/*
                 <a href={profile.resumeUrl}
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 text-sm font-semibold hover:border-zinc-400 dark:hover:border-zinc-500 transition-all duration-200 hover:-translate-y-0.5">

@@ -1,6 +1,6 @@
 import { useScrolled } from '../hooks';
 import { profile } from '../data';
-import { SunIcon, MoonIcon, MenuIcon } from '../icons';
+import { SunIcon, MoonIcon } from '../icons';
 
 const NAV_LINKS = ['About', 'Skills', 'Competitions', 'Experience', 'Projects', 'Education', 'Contact'];
 

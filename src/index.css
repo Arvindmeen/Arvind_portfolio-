@@ -10,7 +10,7 @@
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
-/* Balanced multi-line headings — no orphan words */
+/* Balanced multi-line headings - no orphan words */
 h1, h2, h3, h4 {
   text-wrap: balance;
 }
@@ -122,5 +122,50 @@ html {
 }
 .animate-slide-right {
   animation: slideInRight 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Green text shimmer animation */
+@keyframes text-shimmer {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+.animate-shimmer-green {
+  display: inline-block;
+  background: linear-gradient(
+    110deg,
+    #059669 20%,
+    #10b981 35%,
+    #86efac 50%,
+    #10b981 65%,
+    #059669 80%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: text-shimmer 3.5s linear infinite;
+}
+
+.dark .animate-shimmer-green {
+  background: linear-gradient(
+    110deg,
+    #10b981 20%,
+    #34d399 35%,
+    #dcfce7 50%,
+    #34d399 65%,
+    #10b981 80%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: text-shimmer 3.5s linear infinite;
 }
 

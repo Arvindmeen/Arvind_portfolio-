@@ -1,6 +1,15 @@
 import { projects, profile } from '../data';
 import Reveal from './Reveal';
 import { ExternalLinkIcon, GithubIcon } from '../icons';
+import { TbTrain, TbMotorbike, TbCube } from 'react-icons/tb';
+import { LuShoppingCart } from 'react-icons/lu';
+
+const PROJECT_ICONS = {
+  train: TbTrain,
+  mobility: TbMotorbike,
+  cube: TbCube,
+  ecommerce: LuShoppingCart,
+};
 
 export default function Projects() {
   return (
@@ -25,12 +34,14 @@ export default function Projects() {
         </Reveal>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {projects.map((project, i) => (
-            <Reveal key={i} delay={(i % 3) * 100}>
-              <article className="group flex flex-col rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-sm overflow-hidden hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300 h-full">
-                <div className={`relative flex items-center justify-center h-36 bg-gradient-to-br ${project.gradient} overflow-hidden`}>
-                  <span className="text-5xl select-none">{project.emoji}</span>
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center gap-3 transition-opacity duration-300">
+          {projects.map((project, i) => {
+            const ProjectIcon = PROJECT_ICONS[project.iconKey] || TbCube;
+            return (
+              <Reveal key={i} delay={(i % 3) * 100}>
+                <article className="group flex flex-col rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-sm overflow-hidden hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300 h-full">
+                  <div className={`relative flex items-center justify-center h-36 bg-gradient-to-br ${project.gradient} overflow-hidden`}>
+                    <ProjectIcon className="w-16 h-16 text-white/90 drop-shadow-md group-hover:scale-110 transition-transform duration-300" />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center gap-3 transition-opacity duration-300">
                     <a href={project.demo} target="_blank" rel="noopener noreferrer"
                       className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-semibold hover:bg-white/30 transition-colors">
                       <ExternalLinkIcon size={11} /> Live Demo
@@ -70,7 +81,8 @@ export default function Projects() {
                 </div>
               </article>
             </Reveal>
-          ))}
+          );
+        })}
         </div>
       </div>
     </section>

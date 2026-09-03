@@ -95,7 +95,7 @@ export default function Contact() {
               Get In Touch
             </h2>
             <p className="font-serif-text text-zinc-500 dark:text-zinc-400 max-w-md mx-auto leading-relaxed">
-              Whether you have a project in mind, a job opportunity, or just want to say hello — my inbox is always open.
+              Whether you have a project in mind, a job opportunity, or just want to say hello - my inbox is always open.
             </p>
           </div>
         </Reveal>
