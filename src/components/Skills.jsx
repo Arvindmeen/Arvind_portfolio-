@@ -33,7 +33,7 @@ export default function Skills() {
         </Reveal>
 
         {/* Filter tabs */}
-        <Reveal delay={100}>
+        <Reveal delay={60}>
           <div className="flex flex-wrap gap-2 mb-10">
             {skillCategories.map(cat => (
               <button
@@ -52,7 +52,7 @@ export default function Skills() {
         </Reveal>
 
         {/* Skills grid with Animated Hover Popovers */}
-        <Reveal delay={200}>
+        <Reveal delay={120} duration={550}>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3.5">
             {filtered.map((skill, index) => {
               const isHovered = hoveredSkill?.name === skill.name;
