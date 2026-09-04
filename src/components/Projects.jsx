@@ -1,13 +1,15 @@
 import { projects, profile } from '../data';
 import Reveal from './Reveal';
 import { ExternalLinkIcon, GithubIcon } from '../icons';
-import { TbTrain, TbMotorbike, TbCube } from 'react-icons/tb';
-import { LuShoppingCart } from 'react-icons/lu';
+import { TbTrain, TbMotorbike, TbCube, TbGauge } from 'react-icons/tb';
+import { LuShoppingCart, LuHeartPulse } from 'react-icons/lu';
 
 const PROJECT_ICONS = {
   train: TbTrain,
   mobility: TbMotorbike,
   cube: TbCube,
+  traffic: TbGauge,
+  insurance: LuHeartPulse,
   ecommerce: LuShoppingCart,
 };
 
