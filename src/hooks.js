@@ -103,17 +103,32 @@ export function useCounter(target, duration = 1800) {
   return { count, start: () => setStarted(true) };
 }
 
-export function useInView(threshold = 0.15) {
+export function useInView(threshold = 0.15, rootMargin = '0px 0px -48px 0px') {
   const [ref, setRef] = useState(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
     if (!ref) return;
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) { setInView(true); observer.unobserve(ref); } },
-      { threshold, rootMargin: '0px 0px -48px 0px' }
+      { threshold, rootMargin }
     );
     observer.observe(ref);
     return () => observer.disconnect();
-  }, [ref, threshold]);
+  }, [ref, threshold, rootMargin]);
   return [setRef, inView];
+}
+
+export function useIsMobile(breakpoint = 640) {
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < breakpoint;
+  });
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < breakpoint);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [breakpoint]);
+
+  return isMobile;
 }

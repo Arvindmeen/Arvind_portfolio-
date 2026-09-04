@@ -14,7 +14,12 @@ export default function Skills() {
       <div className="max-w-5xl mx-auto px-6">
         
         {/* Section Header */}
-        <Reveal>
+        <Reveal
+          mobileDuration={500}
+          mobileDelay={0}
+          mobileThreshold={0.1}
+          mobileRootMargin="0px 0px -40px 0px"
+        >
           <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
             <div>
               <p className="font-mono text-xs font-semibold tracking-[0.15em] uppercase text-zinc-400 dark:text-zinc-500 mb-3 flex items-center gap-2">
@@ -33,7 +38,13 @@ export default function Skills() {
         </Reveal>
 
         {/* Filter tabs */}
-        <Reveal delay={60}>
+        <Reveal
+          delay={60}
+          mobileDuration={500}
+          mobileDelay={50}
+          mobileThreshold={0.1}
+          mobileRootMargin="0px 0px -40px 0px"
+        >
           <div className="flex flex-wrap gap-2 mb-10">
             {skillCategories.map(cat => (
               <button
@@ -52,7 +63,14 @@ export default function Skills() {
         </Reveal>
 
         {/* Skills grid with Animated Hover Popovers */}
-        <Reveal delay={120} duration={550}>
+        <Reveal
+          delay={120}
+          duration={550}
+          mobileDuration={450}
+          mobileDelay={90}
+          mobileThreshold={0.03}
+          mobileRootMargin="0px 0px -40px 0px"
+        >
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3.5">
             {filtered.map((skill, index) => {
               const isHovered = hoveredSkill?.name === skill.name;

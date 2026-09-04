@@ -10,11 +10,13 @@ function StatItem({ value, suffix, label }) {
   const { count, start } = useCounter(value);
   useEffect(() => { if (inView) start(); }, [inView]);
   return (
-    <div ref={ref} className="text-left">
-      <div className="font-mono text-2xl font-bold text-zinc-900 dark:text-zinc-100 leading-none">
+    <div ref={ref} className="text-left min-w-0">
+      <div className="font-mono text-xl sm:text-2xl font-bold text-zinc-900 dark:text-zinc-100 leading-none">
         {count}{suffix}
       </div>
-      <div className="text-xs text-zinc-400 dark:text-zinc-500 mt-1">{label}</div>
+      <div className="text-[10.5px] min-[360px]:text-[11px] sm:text-xs text-zinc-400 dark:text-zinc-500 mt-1 leading-tight sm:leading-normal">
+        {label}
+      </div>
     </div>
   );
 }
@@ -130,7 +132,7 @@ export default function Hero() {
               */}
             </div>
 
-            <div className="flex flex-wrap gap-6 sm:gap-8 pt-8 border-t border-zinc-200 dark:border-zinc-800">
+            <div className="grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:gap-8 pt-8 border-t border-zinc-200 dark:border-zinc-800">
               {profile.stats.map(s => {
                 const labelLower = s.label.toLowerCase();
                 const isDsa = labelLower.includes('dsa') || labelLower.includes('problem');
