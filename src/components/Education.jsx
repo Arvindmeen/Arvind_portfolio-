@@ -1,6 +1,6 @@
-import { education } from '../data';
+import { education, certifications } from '../data';
 import Reveal from './Reveal';
-import { LuTrophy, LuGraduationCap, LuAward, LuAtom, LuSparkles, LuBookOpen } from 'react-icons/lu';
+import { LuTrophy, LuGraduationCap, LuAward, LuAtom, LuSparkles, LuBookOpen, LuCloud, LuLayers, LuCode } from 'react-icons/lu';
 
 const BADGE_ICONS = {
   degree: <LuGraduationCap size={13} className="text-blue-500 shrink-0" />,
@@ -9,24 +9,11 @@ const BADGE_ICONS = {
   scholar: <LuSparkles size={13} className="text-emerald-500 shrink-0" />,
 };
 
-const certDetails = [
-  {
-    badge: 'Knight Badge',
-    platform: 'LeetCode',
-    rating: '1869 Peak',
-    highlight: 'Top 5.6% Worldwide',
-    logo: '/leetcode.svg',
-    url: 'https://leetcode.com/u/arvind_meena014/',
-  },
-  {
-    badge: 'Pupil Rank',
-    platform: 'Codeforces',
-    rating: '1329 Peak',
-    highlight: '25+ Rated Rounds',
-    logo: '/codeforces.svg',
-    url: 'https://codeforces.com/profile/arvind_meena014',
-  },
-];
+const CERT_ICONS = {
+  aws: <LuCloud className="w-4 h-4 text-amber-500 dark:text-amber-400" />,
+  cloud: <LuLayers className="w-4 h-4 text-sky-500 dark:text-sky-400" />,
+  fullstack: <LuCode className="w-4 h-4 text-indigo-500 dark:text-indigo-400" />,
+};
 
 export default function Education() {
   return (
@@ -86,10 +73,10 @@ export default function Education() {
               </div>
 
               <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 text-[0.95rem] mb-1">Certifications</h3>
-              <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400 mb-4">Online Platforms</p>
+              <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400 mb-4">Professional & Cloud</p>
               
               <div className="flex flex-col gap-2.5 flex-1">
-                {certDetails.map((cert, i) => (
+                {certifications.map((cert, i) => (
                   <a
                     key={i}
                     href={cert.url}
@@ -98,22 +85,28 @@ export default function Education() {
                     className="group/cert flex items-center justify-between p-3 rounded-xl border border-zinc-200/90 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-950/60 hover:bg-white dark:hover:bg-zinc-800/80 hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-xs transition-all duration-200"
                   >
                     <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-8 h-8 rounded-lg bg-white dark:bg-zinc-800 p-1 border border-zinc-200 dark:border-zinc-700 shadow-2xs flex items-center justify-center shrink-0">
-                        <img src={cert.logo} alt={cert.platform} className="w-full h-full object-contain" />
+                      <div className="w-10 h-8 rounded-lg bg-white dark:bg-zinc-800 p-0.5 border border-zinc-200 dark:border-zinc-700 shadow-2xs flex items-center justify-center shrink-0 overflow-hidden">
+                        {cert.image ? (
+                          <img src={cert.image} alt={cert.title} className="w-full h-full object-cover rounded-sm" />
+                        ) : cert.logo ? (
+                          <img src={cert.logo} alt={cert.issuer} className="w-full h-full object-contain" />
+                        ) : (
+                          CERT_ICONS[cert.iconType] || <LuAward className="w-4 h-4 text-amber-500 dark:text-amber-400" />
+                        )}
                       </div>
                       <div className="min-w-0">
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex items-center gap-1.5 flex-wrap">
                           <span className="font-semibold text-zinc-900 dark:text-zinc-100 text-[13px] group-hover/cert:text-blue-600 dark:group-hover/cert:text-blue-400 transition-colors">
-                            {cert.badge}
+                            {cert.title}
                           </span>
                           <span className="text-[11px] font-mono text-zinc-400 dark:text-zinc-500">
-                            on {cert.platform}
+                            by {cert.issuer}
                           </span>
                         </div>
                         <div className="flex items-center gap-1.5 font-mono text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5">
-                          <span className="font-semibold text-zinc-800 dark:text-zinc-200">{cert.rating}</span>
+                          <span className="font-semibold text-zinc-800 dark:text-zinc-200">{cert.date}</span>
                           <span className="text-zinc-300 dark:text-zinc-600">·</span>
-                          <span>{cert.highlight}</span>
+                          <span className="truncate">{cert.credentialId || cert.skills}</span>
                         </div>
                       </div>
                     </div>
@@ -130,7 +123,7 @@ export default function Education() {
               </div>
 
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-mono text-[11px] font-semibold bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 self-start mt-4">
-                <LuTrophy className="w-3.5 h-3.5 text-amber-500" /> 2 Verified Credentials
+                <LuTrophy className="w-3.5 h-3.5 text-amber-500" /> {certifications.length} Verified Credentials
               </span>
             </div>
           </Reveal>

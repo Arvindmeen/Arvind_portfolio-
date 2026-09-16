@@ -15,7 +15,7 @@ export const profile = {
   available: true,
   stats: [
     { value: 1869, suffix: '', label: 'LeetCode Rating' },
-    { value: 1329, suffix: '', label: 'Codeforces Rating' },
+    { value: 1559, suffix: '', label: 'Codeforces Rating' },
     { value: 410, suffix: '', label: 'DSA Problems Solved' },
   ],
   roles: [
@@ -39,7 +39,7 @@ export const skills = [
     icon: '/skills/dsa.svg',
     cat: 'core-cs',
     project: 'Competitive Programming & Algorithms',
-    summary: '410+ problems solved across LeetCode (Knight rank, 1869 peak) and Codeforces (Pupil 1329 peak).',
+    summary: '410+ problems solved across LeetCode (Knight rank, 1869 peak) and Codeforces (Specialist 1559 peak).',
     highlight: 'Knight on LeetCode (Top 5.6%)'
   },
   {
@@ -489,7 +489,7 @@ export const experience = [
     role: 'Competitive Programmer & Problem Solver',
     company: 'LeetCode & Codeforces',
     period: '2024 - Present',
-    desc: 'Solved 410+ algorithmic problems focusing on Dynamic Programming, Graph Theory, Trees, and Bit Manipulation. Knight on LeetCode (Top 5.6% Worldwide, 1869 peak rating) and Pupil on Codeforces (1329 peak rating) across 40+ rated global rounds.',
+    desc: 'Solved 410+ algorithmic problems focusing on Dynamic Programming, Graph Theory, Trees, and Bit Manipulation. Knight on LeetCode (Top 5.6% Worldwide, 1869 peak rating) and Specialist on Codeforces (1559 peak rating) across 40+ rated global rounds.',
     tags: ['C++', 'DSA', 'Algorithms', 'Graph Theory', 'Dynamic Programming', 'Competitive Programming'],
   },
   {
@@ -508,7 +508,8 @@ export const projects = [
     tags: ['Node.js', 'Express.js', 'Apache Kafka', 'PostgreSQL', 'Redis', 'Docker', 'Microservices', 'Saga Pattern'],
     iconKey: 'train',
     gradient: 'from-indigo-600 to-violet-700',
-    demo: '#',
+    image: '/projects/book-my-train.png',
+    demo: 'https://book-my-train-iota.vercel.app/',
     repo: 'https://github.com/Arvindmeen',
   },
   {
@@ -517,7 +518,8 @@ export const projects = [
     tags: ['WebSockets', 'Apache Kafka', 'Apache Flink', 'Redis', 'H3 Indexing', 'Distributed Systems'],
     iconKey: 'mobility',
     gradient: 'from-blue-600 to-cyan-600',
-    demo: '#',
+    image: '/projects/ride-tracker.png',
+    demo: 'https://ride-tracker-ruddy.vercel.app/',
     repo: 'https://github.com/Arvindmeen',
   },
   {
@@ -598,6 +600,37 @@ export const education = [
 ];
 
 export const certifications = [
-  'Knight Badge on LeetCode (1869 Peak Rating, Top 5.6% Worldwide)',
-  'Pupil Rank on Codeforces (1329 Peak Rating, 25+ Rated Rounds)',
+  {
+    title: 'AWS Cloud Practitioner Essentials',
+    issuer: 'Amazon Web Services (AWS)',
+    platform: 'AWS',
+    date: 'Aug 2026',
+    credentialId: null,
+    skills: 'AWS Fundamental',
+    image: '/certificates/aws-cloud-practitioner.png',
+    url: 'https://www.linkedin.com/in/arvind-meena-78a258288/details/certifications/',
+    iconType: 'aws',
+  },
+  {
+    title: 'Cloud Fundamentals Certification',
+    issuer: 'OneRoadmap',
+    platform: 'OneRoadmap',
+    date: 'Sep 2026',
+    credentialId: 'CERT-A90DF5A5',
+    skills: 'Cloud Computing Knowledge',
+    image: '/certificates/cloud-fundamentals.png',
+    url: 'https://www.linkedin.com/in/arvind-meena-78a258288/details/certifications/',
+    iconType: 'cloud',
+  },
+  {
+    title: 'Full Stack Developer Certificate',
+    issuer: 'OneRoadmap',
+    platform: 'OneRoadmap',
+    date: 'Sep 2026',
+    credentialId: 'CERT-1D38782D',
+    skills: 'Full-Stack Development',
+    image: '/certificates/full-stack-developer.png',
+    url: 'https://www.linkedin.com/in/arvind-meena-78a258288/details/certifications/',
+    iconType: 'fullstack',
+  },
 ];

@@ -42,18 +42,27 @@ export default function Projects() {
               <Reveal key={i} delay={(i % 3) * 100}>
                 <article className="group flex flex-col rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-sm overflow-hidden hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300 h-full">
                   <div className={`relative flex items-center justify-center h-36 bg-gradient-to-br ${project.gradient} overflow-hidden`}>
-                    <ProjectIcon className="w-16 h-16 text-white/90 drop-shadow-md group-hover:scale-110 transition-transform duration-300" />
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <ProjectIcon className="w-16 h-16 text-white/90 drop-shadow-md group-hover:scale-110 transition-transform duration-300" />
+                    )}
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center gap-3 transition-opacity duration-300">
-                    <a href={project.demo} target="_blank" rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-semibold hover:bg-white/30 transition-colors">
-                      <ExternalLinkIcon size={11} /> Live Demo
-                    </a>
-                    <a href={project.repo} target="_blank" rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-semibold hover:bg-white/30 transition-colors">
-                      <GithubIcon size={11} /> Code
-                    </a>
+                      <a href={project.demo} target="_blank" rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-semibold hover:bg-white/30 transition-colors">
+                        <ExternalLinkIcon size={11} /> Live Demo
+                      </a>
+                      <a href={project.repo} target="_blank" rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-semibold hover:bg-white/30 transition-colors">
+                        <GithubIcon size={11} /> Code
+                      </a>
+                    </div>
                   </div>
-                </div>
 
                 <div className="flex flex-col flex-1 p-5">
                   <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 text-[0.95rem] mb-2">{project.title}</h3>

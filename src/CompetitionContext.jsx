@@ -52,30 +52,42 @@ export const INITIAL_LEETCODE = {
 
 export const INITIAL_CODEFORCES = {
   handle: 'arvind_meena014',
-  rating: 1329,
-  maxRating: 1329,
-  rank: 'pupil',
-  maxRank: 'pupil',
+  rating: 1559,
+  maxRating: 1559,
+  rank: 'specialist',
+  maxRank: 'specialist',
   organization: 'IIT Kharagpur',
   city: 'Moradabad',
-  contestsAttended: 25,
+  contestsAttended: 28,
   history: [
     { title: 'Round 976 (Div. 2)', rating: 360, rank: 12170, date: 'Sep 2024' },
     { title: 'Round 979 (Div. 2)', rating: 576, rank: 16643, date: 'Oct 2024' },
     { title: 'Round 993 (Div. 4)', rating: 706, rank: 23238, date: 'Dec 2024' },
     { title: 'Round 994 (Div. 2)', rating: 753, rank: 13056, date: 'Dec 2024' },
     { title: 'Round 995 (Div. 3)', rating: 786, rank: 18391, date: 'Dec 2024' },
+    { title: 'Good Bye 2024', rating: 743, rank: 12930, date: 'Dec 2024' },
     { title: 'Round 1026 (Div. 2)', rating: 653, rank: 16413, date: 'May 2025' },
+    { title: 'Round 1028 (Div. 2)', rating: 567, rank: 15381, date: 'Jun 2025' },
+    { title: 'Round 1041 (Div. 1 + 2)', rating: 484, rank: 12076, date: 'Aug 2025' },
     { title: 'Round 1043 (Div. 3)', rating: 643, rank: 16117, date: 'Aug 2025' },
+    { title: 'Round 1044 (Div. 2)', rating: 617, rank: 17923, date: 'Aug 2025' },
     { title: 'Round 1045 (Div. 2)', rating: 714, rank: 13212, date: 'Aug 2025' },
     { title: 'Round 1046 (Div. 2)', rating: 712, rank: 13985, date: 'Aug 2025' },
+    { title: 'Round 1072 (Div. 3)', rating: 620, rank: 24096, date: 'Jan 2026' },
     { title: 'Edu Round 188 (Div. 2)', rating: 676, rank: 11655, date: 'Mar 2026' },
     { title: 'Round 1101 (Div. 2)', rating: 819, rank: 8798, date: 'May 2026' },
+    { title: 'Round 1104 (Div. 1 + 2)', rating: 791, rank: 12478, date: 'May 2026' },
+    { title: 'Round 1105 (Div. 2)', rating: 847, rank: 8193, date: 'Jun 2026' },
     { title: 'Round 1106 (Div. 2)', rating: 927, rank: 6883, date: 'Jun 2026' },
     { title: 'Edu Round 192 (Div. 2)', rating: 1180, rank: 1245, date: 'Jul 2026' },
     { title: 'Round 1111 (Div. 2)', rating: 1239, rank: 3286, date: 'Jul 2026' },
     { title: 'Round 1112 (Div. 2)', rating: 1279, rank: 3304, date: 'Aug 2026' },
+    { title: 'Round 1113 (Div. 2)', rating: 1244, rank: 6393, date: 'Aug 2026' },
+    { title: 'Round 1114 (Div. 3)', rating: 1220, rank: 8131, date: 'Aug 2026' },
     { title: 'Round 1115 (Div. 2)', rating: 1329, rank: 2332, date: 'Aug 2026' },
+    { title: 'Round 1119 (Div. 3)', rating: 1329, rank: 3857, date: 'Sep 2026' },
+    { title: 'Round 1120 (Div. 2)', rating: 1449, rank: 858, date: 'Sep 2026' },
+    { title: 'Round 1121 (Div. 2)', rating: 1559, rank: 572, date: 'Sep 2026' },
   ]
 };
 
@@ -126,8 +138,8 @@ export function CompetitionProvider({ children }) {
         const info = await res.json();
         if (info.status === 'OK' && info.result?.[0]) {
           const user = info.result[0];
-          const cleanCity = user.city ? user.city.normalize('NFD').replace(/[\u0300-\u036f]/g, '') : prev.city;
           setCodeforcesData(prev => {
+            const cleanCity = user.city ? user.city.normalize('NFD').replace(/[\u0300-\u036f]/g, '') : (prev.city || 'Moradabad');
             const updated = {
               ...prev,
               rating: user.rating ?? prev.rating,

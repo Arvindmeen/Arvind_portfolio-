@@ -170,7 +170,7 @@ export default function Footer() {
                     Codeforces
                   </span>
                   <span className="font-mono text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-medium">
-                    Pupil
+                    Specialist
                   </span>
                 </a>
               </div>

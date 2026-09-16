@@ -138,7 +138,7 @@ export default function Competitions() {
           
           {/* LeetCode Card */}
           <Reveal delay={100}>
-            <div className="p-7 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/60 backdrop-blur-md hover:border-amber-500/30 hover:shadow-xl transition-all duration-300 h-full flex flex-col justify-between">
+            <div className="p-5 sm:p-7 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/60 backdrop-blur-md hover:border-amber-500/30 hover:shadow-xl transition-all duration-300 h-full flex flex-col justify-between">
               <div>
                 <div className="flex items-start justify-between gap-4 mb-5">
                   <div className="flex items-center gap-3">
@@ -148,7 +148,7 @@ export default function Competitions() {
                     <div>
                       <div className="flex items-center gap-2">
                         <h3 className="font-bold text-zinc-900 dark:text-zinc-100 text-lg tracking-tight">LeetCode</h3>
-                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/25 flex items-center gap-1.5">
+                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/25 flex items-center gap-1.5 shrink-0">
                           <img
                             src="https://leetcode.com/static/images/badges/knight.png"
                             alt="Knight Badge"
@@ -174,20 +174,20 @@ export default function Competitions() {
                 </div>
 
                 {/* Metrics */}
-                <div className="grid grid-cols-3 gap-3 mb-6 p-4 rounded-xl bg-zinc-50/70 dark:bg-zinc-950/40 border border-zinc-200/60 dark:border-zinc-800/60">
-                  <div>
+                <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-6 p-3.5 sm:p-4 rounded-xl bg-zinc-50/70 dark:bg-zinc-950/40 border border-zinc-200/60 dark:border-zinc-800/60 items-center">
+                  <div className="min-w-0">
                     <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-0.5">Rating</div>
-                    <div className="font-mono text-2xl font-bold text-amber-500 dark:text-amber-400 tracking-tight">{leetcodeData.rating}</div>
+                    <div className="font-mono text-xl sm:text-2xl font-bold text-amber-500 dark:text-amber-400 tracking-tight leading-none">{leetcodeData.rating}</div>
                   </div>
-                  <div>
+                  <div className="min-w-0 px-0.5 sm:px-1">
                     <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-0.5">Top %</div>
-                    <div className="font-mono text-2xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
+                    <div className="h-7 sm:h-8 flex items-center font-mono text-xl sm:text-2xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight leading-none">
                       {leetcodeData.topPercentage}%
                     </div>
                   </div>
-                  <div>
+                  <div className="min-w-0 text-right sm:text-left">
                     <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-0.5">Contests</div>
-                    <div className="font-mono text-2xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">{leetcodeData.contestsAttended}</div>
+                    <div className="font-mono text-xl sm:text-2xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight leading-none">{leetcodeData.contestsAttended}</div>
                   </div>
                 </div>
 
@@ -273,7 +273,7 @@ export default function Competitions() {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-zinc-200/60 dark:border-zinc-800/60 mt-4 flex items-center justify-between text-xs text-zinc-400 dark:text-zinc-500 font-mono">
+              <div className="pt-4 border-t border-zinc-200/60 dark:border-zinc-800/60 mt-4 flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-400 dark:text-zinc-500 font-mono">
                 <span className="text-zinc-700 dark:text-zinc-300 font-medium flex items-center gap-2">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -288,7 +288,7 @@ export default function Competitions() {
 
           {/* Codeforces Card */}
           <Reveal delay={200}>
-            <div className="p-7 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/60 backdrop-blur-md hover:border-blue-500/30 hover:shadow-xl transition-all duration-300 h-full flex flex-col justify-between">
+            <div className="p-5 sm:p-7 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/60 backdrop-blur-md hover:border-blue-500/30 hover:shadow-xl transition-all duration-300 h-full flex flex-col justify-between">
               <div>
                 <div className="flex items-start justify-between gap-4 mb-5">
                   <div className="flex items-center gap-3">
@@ -298,7 +298,7 @@ export default function Competitions() {
                     <div>
                       <div className="flex items-center gap-2">
                         <h3 className="font-bold text-zinc-900 dark:text-zinc-100 text-lg tracking-tight">Codeforces</h3>
-                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 capitalize flex items-center gap-1.5">
+                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 capitalize flex items-center gap-1.5 shrink-0">
                           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                           {codeforcesData.rank}
                         </span>
@@ -319,20 +319,20 @@ export default function Competitions() {
                 </div>
 
                 {/* Metrics */}
-                <div className="grid grid-cols-3 gap-3 mb-6 p-4 rounded-xl bg-zinc-50/70 dark:bg-zinc-950/40 border border-zinc-200/60 dark:border-zinc-800/60">
-                  <div>
+                <div className="grid grid-cols-[1fr_1.35fr_1fr] sm:grid-cols-3 gap-2 sm:gap-3 mb-6 p-3.5 sm:p-4 rounded-xl bg-zinc-50/70 dark:bg-zinc-950/40 border border-zinc-200/60 dark:border-zinc-800/60 items-center">
+                  <div className="min-w-0">
                     <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-0.5">Rating</div>
-                    <div className="font-mono text-2xl font-bold text-emerald-500 dark:text-emerald-400 tracking-tight">{codeforcesData.rating}</div>
+                    <div className="font-mono text-xl sm:text-2xl font-bold text-emerald-500 dark:text-emerald-400 tracking-tight leading-none">{codeforcesData.rating}</div>
                   </div>
-                  <div>
+                  <div className="min-w-0 px-0.5 sm:px-1">
                     <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-0.5">Rank</div>
-                    <div className="font-mono text-2xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight capitalize">
+                    <div className="h-7 sm:h-8 flex items-center font-bold text-sm sm:text-base lg:text-lg text-zinc-900 dark:text-zinc-100 tracking-tight capitalize truncate leading-none" title={codeforcesData.rank}>
                       {codeforcesData.rank}
                     </div>
                   </div>
-                  <div>
+                  <div className="min-w-0 text-right sm:text-left">
                     <div className="text-[11px] font-mono uppercase text-zinc-400 dark:text-zinc-500 mb-0.5">Contests</div>
-                    <div className="font-mono text-2xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">{codeforcesData.contestsAttended}</div>
+                    <div className="font-mono text-xl sm:text-2xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight leading-none">{codeforcesData.contestsAttended}</div>
                   </div>
                 </div>
 
@@ -377,13 +377,13 @@ export default function Competitions() {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-zinc-200/60 dark:border-zinc-800/60 mt-4 flex items-center justify-between text-xs text-zinc-400 dark:text-zinc-500 font-mono">
+              <div className="pt-4 border-t border-zinc-200/60 dark:border-zinc-800/60 mt-4 flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-400 dark:text-zinc-500 font-mono">
                 <span className="text-zinc-700 dark:text-zinc-300 font-medium flex items-center gap-2">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                   </span>
-                  Active {codeforcesData.rank} Rank
+                  Active <span className="capitalize">{codeforcesData.rank}</span> Rank
                 </span>
                 <span>{codeforcesData.contestsAttended} Rated Rounds</span>
               </div>
