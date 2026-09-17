@@ -3,7 +3,7 @@
 export const profile = {
   name: 'Arvind Meena',
   initials: 'AM',
-  avatar: 'https://media.licdn.com/dms/image/v2/D5603AQEbi3ljkOpuBA/profile-displayphoto-scale_400_400/B56Z91.IqBG4Ag-/0/1784390652923?e=1789603200&v=beta&t=LUpKbrlmb_ddJenRBkFxVZmxGQMgTvEouYnivIANhTo',
+  avatar: '/avatar.jpg',
   title: 'Full Stack & Backend Engineer',
   tagline: 'Student at IIT Kharagpur building high-throughput backends, distributed systems, and scalable full-stack applications.',
   location: 'IIT Kharagpur, India',
