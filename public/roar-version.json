@@ -1,9 +1,9 @@
 {
-  "version": "1.0.4",
+  "version": "1.0.5",
   "release_date": "2026-11-07",
-  "release_name": "Roar India Browser v1.0.4 (Closed Beta)",
-  "download_url": "https://github.com/Arvindmeen/Arvind_portfolio-/releases/download/v1.0.4/RoarSetup-1.0.4-x64.exe",
-  "sha256": "bdd17da1d913bfb7625e25acaac42f23dfecb7d1e4f0cdc005ce8210c88fc2fc",
+  "release_name": "Roar India Browser v1.0.5 (Closed Beta)",
+  "download_url": "https://github.com/Arvindmeen/Arvind_portfolio-/releases/download/1.0.5/RoarSetup-1.0.5-x64.exe",
+  "sha256": "c0ceb9debb7ce96be487d46a4c67dd48be2bfb59fad0e53ee3db46b66407d3a9",
   "changelog": [
     "Unified single-button updater with one-click checks and seamless in-place updates",
     "Multi-user privacy isolation in %LOCALAPPDATA%\\Roar Browser\\User Data",
