@@ -1,13 +1,16 @@
 {
-  "version": "1.0.5",
+  "version": "1.0.6",
   "release_date": "2026-11-07",
-  "release_name": "Roar India Browser v1.0.5 (Closed Beta)",
-  "download_url": "https://github.com/Arvindmeen/Arvind_portfolio-/releases/download/1.0.5/RoarSetup-1.0.5-x64.exe",
-  "sha256": "c0ceb9debb7ce96be487d46a4c67dd48be2bfb59fad0e53ee3db46b66407d3a9",
+  "release_name": "Roar India Browser v1.0.6 (Closed Beta)",
+  "download_url": "https://github.com/Arvindmeen/Arvind_portfolio-/releases/download/v1.0.6/RoarSetup-1.0.6-x64.exe",
+  "portable_url": "https://github.com/Arvindmeen/Arvind_portfolio-/releases/download/v1.0.6/Roar-1.0.6-x64-portable.zip",
+  "sha256": "b1f6c92de618a4105bfc082a47763dca76b0e31642a435cc61520f13223f979e",
   "changelog": [
-    "Unified single-button updater with one-click checks and seamless in-place updates",
-    "Multi-user privacy isolation in %LOCALAPPDATA%\\Roar Browser\\User Data",
-    "Direct C++ WinInet bridge for reliable update detection without browser CORS limitations"
+    "In-Place Update Engine: Silent background download with progress bar and seamless in-place upgrade",
+    "Native Windows C++ WinInet Bridge: Direct GitHub Releases API queries bypassing browser CORS restrictions",
+    "Strict Per-User Privacy Isolation: User profile, history, bookmarks, and sessions stored in %LOCALAPPDATA%\\Roar Browser\\User Data",
+    "Zero Developer Data Leakage: Clean per-user database and private identity sandbox on any PC",
+    "Auto-Prune Distribution Engine: Retains last two releases to conserve disk storage"
   ],
   "mandatory": false
 }
