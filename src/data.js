@@ -509,7 +509,7 @@ export const projects = [
     iconKey: 'browser',
     gradient: 'from-amber-600 to-yellow-600',
     image: '/projects/roar-browser.png',
-    demo: 'https://github.com/Arvindmeen/Arvind_portfolio-/releases/download/v1.0.2/RoarSetup-1.0.2-x64.exe',
+    demo: 'https://github.com/Arvindmeen/Arvind_portfolio-/releases/download/v1.0.3/RoarSetup-1.0.3-x64.exe',
     demoLabel: 'Download Browser',
     downloadCta: 'Download for Windows',
     hideRepo: true,
