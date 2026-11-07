@@ -38,12 +38,18 @@ export default function Projects() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {projects.map((project, i) => {
             const ProjectIcon = PROJECT_ICONS[project.iconKey] || TbCube;
+            const CardWrapper = project.downloadCta ? 'div' : 'a';
+            const cardLinkProps = project.downloadCta
+              ? {}
+              : {
+                  href: project.demo !== '#' ? project.demo : project.repo,
+                  target: '_blank',
+                  rel: 'noopener noreferrer',
+                };
             return (
               <Reveal key={i} delay={(i % 3) * 100}>
-                <a
-                  href={project.demo !== '#' ? project.demo : project.repo}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <CardWrapper
+                  {...cardLinkProps}
                   className="group flex flex-col rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-sm overflow-hidden hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300 h-full"
                 >
                   <div className={`relative flex items-center justify-center h-36 bg-gradient-to-br ${project.gradient} overflow-hidden`}>
@@ -105,23 +111,15 @@ export default function Projects() {
                       )}
                     </div>
                     {project.downloadCta && (
-                      <span
-                        role="button"
-                        tabIndex={0}
-                        onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(project.demo, '_blank', 'noopener,noreferrer'); }}
-                        onKeyDown={e => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            window.open(project.demo, '_blank', 'noopener,noreferrer');
-                          }
-                        }}
-                        className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white cursor-pointer">
+                      <a
+                        href={project.demo}
+                        download
+                        className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white">
                         <LuDownload size={16} /> {project.downloadCta}
-                      </span>
+                      </a>
                     )}
                   </div>
-                </a>
+                </CardWrapper>
               </Reveal>
           );
         })}
