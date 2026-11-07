@@ -114,7 +114,7 @@ export default function Projects() {
                       <button
                         type="button"
                         onClick={() => window.location.assign(project.demo)}
-                        className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white">
+                        className="mt-4 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white">
                         <LuDownload size={16} /> {project.downloadCta}
                       </button>
                     )}
