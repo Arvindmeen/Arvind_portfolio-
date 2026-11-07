@@ -1,10 +1,11 @@
 import { projects, profile } from '../data';
 import Reveal from './Reveal';
 import { ExternalLinkIcon, GithubIcon } from '../icons';
-import { TbTrain, TbMotorbike, TbCube, TbGauge } from 'react-icons/tb';
+import { TbTrain, TbMotorbike, TbCube, TbGauge, TbBrowser } from 'react-icons/tb';
 import { LuShoppingCart, LuHeartPulse } from 'react-icons/lu';
 
 const PROJECT_ICONS = {
+  browser: TbBrowser,
   train: TbTrain,
   mobility: TbMotorbike,
   cube: TbCube,
@@ -61,7 +62,7 @@ export default function Projects() {
                       <span
                         onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(project.demo, '_blank', 'noopener,noreferrer'); }}
                         className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-semibold hover:bg-white/30 transition-colors cursor-pointer">
-                        <ExternalLinkIcon size={11} /> Live Demo
+                        <ExternalLinkIcon size={11} /> {project.demoLabel || 'Live Demo'}
                       </span>
                       <span
                         onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(project.repo, '_blank', 'noopener,noreferrer'); }}

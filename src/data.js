@@ -503,6 +503,18 @@ export const experience = [
 
 export const projects = [
   {
+    title: 'Roar India Browser | Sovereign Privacy Desktop Browser',
+    desc: 'Architected an independent, high-performance desktop web browser engineered from scratch for Indian digital sovereignty. Built on C++20 Win32 direct hardware composition and Chromium Blink substrate, delivering sub-millisecond tab switching. Integrated Rust-based native network interceptor evaluating 158,000+ privacy rules at sub-millisecond latency. Features DPAPI AES-256 encrypted local keystore, deterministic farbling anti-fingerprinting, and strict zero-telemetry client architecture compliant with India\'s DPDPA 2023.',
+    tags: ['C++20', 'Chromium / CEF', 'Rust (adblock)', 'Win32 DirectComposition', 'SQLite WAL', 'DPAPI AES-256'],
+    iconKey: 'browser',
+    gradient: 'from-amber-600 to-yellow-600',
+    image: '/projects/roar-browser.png',
+    demo: 'https://github.com/Arvindmeen/Roar-India-Browser/releases/download/v1.0.0/RoarSetup-1.0.0-x64.exe',
+    demoLabel: 'Download Browser',
+    repo: 'https://github.com/Arvindmeen/Roar-India-Browser',
+  },
+
+  {
     title: 'Book My Train | Microservices Architecture',
     desc: 'Architected a scalable platform using 7 microservices and database-per-service architecture. Centralized API Gateway with rate limiting, circuit breakers & JWT auth. Event-driven Kafka pipeline with Dead Letter Queues, Saga pattern distributed seat locking, idempotent APIs, and Redis caching slashing latency by 96% (500ms to 20ms). Containerized with Docker Compose.',
     tags: ['Node.js', 'Express.js', 'Apache Kafka', 'PostgreSQL', 'Redis', 'Docker', 'Microservices', 'Saga Pattern'],

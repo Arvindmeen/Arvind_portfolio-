@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "release_date": "2026-11-07",
+  "release_name": "Roar India Browser v1.0.0 (Closed Beta)",
+  "download_url": "https://github.com/arvindmeena/roar-browser/releases/download/v1.0.0/RoarSetup-1.0.0-x64.exe",
+  "portable_url": "https://github.com/arvindmeena/roar-browser/releases/download/v1.0.0/Roar-1.0.0-x64-portable.zip",
+  "sha256": "b4ad8aa5ba40bd7180c8d971e72e3ba0f3233045cf33a2f3fbf83a503c61ac42",
+  "changelog": [
+    "Sovereign C++20 desktop shell with Blink substrate and DirectComposition",
+    "Rust native adblocker with 158,000+ active privacy rules",
+    "Single-click installer for Windows 10/11 with zero admin requirements",
+    "India DPDPA 2023 compliance with zero telemetry"
+  ],
+  "mandatory": false
+}
+
