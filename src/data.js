@@ -504,13 +504,15 @@ export const experience = [
 export const projects = [
   {
     title: 'Roar India Browser | Sovereign Privacy Desktop Browser',
-    desc: 'Architected an independent, high-performance desktop web browser engineered from scratch for Indian digital sovereignty. Built on C++20 Win32 direct hardware composition and Chromium Blink substrate, delivering sub-millisecond tab switching. Integrated Rust-based native network interceptor evaluating 158,000+ privacy rules at sub-millisecond latency. Features DPAPI AES-256 encrypted local keystore, deterministic farbling anti-fingerprinting, and strict zero-telemetry client architecture compliant with India\'s DPDPA 2023.',
+    desc: 'A privacy-focused desktop browser built with C++20, Chromium, and Rust. Includes encrypted local storage, anti-fingerprinting protections, and a zero-telemetry design.',
     tags: ['C++20', 'Chromium / CEF', 'Rust (adblock)', 'Win32 DirectComposition', 'SQLite WAL', 'DPAPI AES-256'],
     iconKey: 'browser',
     gradient: 'from-amber-600 to-yellow-600',
     image: '/projects/roar-browser.png',
     demo: 'https://github.com/Arvindmeen/Roar-India-Browser/releases/download/v1.0.0/RoarSetup-1.0.0-x64.exe',
     demoLabel: 'Download Browser',
+    downloadCta: 'Download for Windows',
+    hideRepo: true,
     repo: 'https://github.com/Arvindmeen/Roar-India-Browser',
   },
 
@@ -560,15 +562,6 @@ export const projects = [
     gradient: 'from-cyan-600 to-blue-700',
     demo: 'https://github.com/Arvindmeen/Medical-Insurance-Cost-Prediction-using-Linear-Regression',
     repo: 'https://github.com/Arvindmeen/Medical-Insurance-Cost-Prediction-using-Linear-Regression',
-  },
-  {
-    title: 'Fashion-hub | Scalable E-Commerce',
-    desc: 'Engineered a robust REST API backend with Node.js, Express.js, and MongoDB. Secure JWT auth, refresh token rotation, bcrypt password hashing, and role-based access control (RBAC). Complete order tracking and inventory management across 15+ endpoints.',
-    tags: ['Node.js', 'Express.js', 'MongoDB', 'JWT', 'RBAC', 'Postman'],
-    iconKey: 'ecommerce',
-    gradient: 'from-amber-600 to-orange-700',
-    demo: '#',
-    repo: 'https://github.com/Arvindmeen',
   },
 ];
 

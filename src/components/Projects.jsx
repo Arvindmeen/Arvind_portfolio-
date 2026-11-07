@@ -2,7 +2,7 @@ import { projects, profile } from '../data';
 import Reveal from './Reveal';
 import { ExternalLinkIcon, GithubIcon } from '../icons';
 import { TbTrain, TbMotorbike, TbCube, TbGauge, TbBrowser } from 'react-icons/tb';
-import { LuShoppingCart, LuHeartPulse } from 'react-icons/lu';
+import { LuDownload, LuHeartPulse } from 'react-icons/lu';
 
 const PROJECT_ICONS = {
   browser: TbBrowser,
@@ -11,7 +11,6 @@ const PROJECT_ICONS = {
   cube: TbCube,
   traffic: TbGauge,
   insurance: LuHeartPulse,
-  ecommerce: LuShoppingCart,
 };
 
 export default function Projects() {
@@ -64,11 +63,13 @@ export default function Projects() {
                         className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-semibold hover:bg-white/30 transition-colors cursor-pointer">
                         <ExternalLinkIcon size={11} /> {project.demoLabel || 'Live Demo'}
                       </span>
-                      <span
-                        onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(project.repo, '_blank', 'noopener,noreferrer'); }}
-                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-semibold hover:bg-white/30 transition-colors cursor-pointer">
-                        <GithubIcon size={11} /> Code
-                      </span>
+                      {!project.hideRepo && (
+                        <span
+                          onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(project.repo, '_blank', 'noopener,noreferrer'); }}
+                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-semibold hover:bg-white/30 transition-colors cursor-pointer">
+                          <GithubIcon size={11} /> Code
+                        </span>
+                      )}
                     </div>
                   </div>
 
@@ -86,19 +87,39 @@ export default function Projects() {
                           </span>
                         ))}
                       </div>
-                      <div className="flex items-center gap-1.5 shrink-0">
-                        <span
-                          onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(project.demo, '_blank', 'noopener,noreferrer'); }}
-                          className="w-7 h-7 rounded-full border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:border-zinc-400 dark:hover:border-zinc-500 transition-all cursor-pointer">
-                          <ExternalLinkIcon size={12} />
-                        </span>
-                        <span
-                          onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(project.repo, '_blank', 'noopener,noreferrer'); }}
-                          className="w-7 h-7 rounded-full border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:border-zinc-400 dark:hover:border-zinc-500 transition-all cursor-pointer">
-                          <GithubIcon size={12} />
-                        </span>
-                      </div>
+                      {!project.downloadCta && (
+                        <div className="flex items-center gap-1.5 shrink-0">
+                          <span
+                            onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(project.demo, '_blank', 'noopener,noreferrer'); }}
+                            className="w-7 h-7 rounded-full border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:border-zinc-400 dark:hover:border-zinc-500 transition-all cursor-pointer">
+                            <ExternalLinkIcon size={12} />
+                          </span>
+                          {!project.hideRepo && (
+                            <span
+                              onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(project.repo, '_blank', 'noopener,noreferrer'); }}
+                              className="w-7 h-7 rounded-full border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:border-zinc-400 dark:hover:border-zinc-500 transition-all cursor-pointer">
+                              <GithubIcon size={12} />
+                            </span>
+                          )}
+                        </div>
+                      )}
                     </div>
+                    {project.downloadCta && (
+                      <span
+                        role="button"
+                        tabIndex={0}
+                        onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(project.demo, '_blank', 'noopener,noreferrer'); }}
+                        onKeyDown={e => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            window.open(project.demo, '_blank', 'noopener,noreferrer');
+                          }
+                        }}
+                        className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white cursor-pointer">
+                        <LuDownload size={16} /> {project.downloadCta}
+                      </span>
+                    )}
                   </div>
                 </a>
               </Reveal>
